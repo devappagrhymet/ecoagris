@@ -1,0 +1,104 @@
+        <!-- start footer -->
+        <footer class="footer bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <a routerLink="/layout-one-1">
+                            <img src="assets/images/logo-light.png" alt="" height="22" />
+                        </a>
+                        <p class="mt-4">In an ideal world this text wouldn’t exist, a client would acknowledge the importance of having web copy before the design starts.</p>
+                    </div>
+                    <div class="col-lg-2 offset-lg-2 col-sm-6">
+                        <h6 class="text-white mb-4 mt-sm-0 mt-5">Company</h6>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="javascript:void(0);">About us</a></li>
+                            <li><a href="javascript:void(0);">Media press</a></li>
+                            <li><a href="javascript:void(0);">Career</a></li>
+                            <li><a href="javascript:void(0);">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <h6 class="text-white mb-4 mt-sm-0 mt-4">Information</h6>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="javascript:void(0);">Pricing</a></li>
+                            <li><a href="javascript:void(0);">Agencies</a></li>
+                            <li><a href="javascript:void(0);">Our Apps</a></li>
+                            <li><a href="javascript:void(0);">Sitemap</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <h6 class="text-white mb-4 mt-sm-0 mt-4">More info</h6>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="javascript:void(0);">FAQ</a></li>
+                            <li><a href="javascript:void(0);">Contact</a></li>
+                            <li><a href="javascript:void(0);">Discussion</a></li>
+                            <li><a href="javascript:void(0);">Terms & condition</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </footer>
+        <!-- end footer -->
+
+        <!-- start footer alter -->
+        <div class="footer-alt bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>{{year}} © Xolcy. Created by Themesdesign</p>
+                    </div>
+                    <div class="col-sm-6 text-sm-end">
+                        <ul class="list-unstyled footer-alt-list mb-0 mt-sm-0 mt-3">
+                            <li class="list-inline-item">
+                                <a href="javascript:void(0);"> <i-feather class="icon-xs" name="facebook"></i-feather> </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:void(0);"> <i-feather class="icon-xs" name="twitter"></i-feather> </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:void(0);"> <i-feather class="icon-xs" name="github"></i-feather> </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="javascript:void(0);"> <i-feather class="icon-xs" name="instagram"></i-feather> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end footer alter -->
+
+        <!-- Style switcher -->
+        <div id="style-switcher" [style]="isVisible ? 'left: 0px' : 'left: -189px'">
+            <div>
+                <h3>Select Your Color</h3>
+                <ul class="pattern">
+                    <li>
+                        <a class="color1" href="javascript: void(0);" (click)="setColor('default')"></a>
+                    </li>
+                    <li>
+                        <a class="color2" href="javascript: void(0);" (click)="setColor('success')"></a>
+                    </li>
+                    <li>
+                        <a class="color3" href="javascript: void(0);" (click)="setColor('warning')"></a>
+                    </li>
+                    <li>
+                        <a class="color4" href="javascript: void(0);" (click)="setColor('danger')"></a>
+                    </li>
+                    <li>
+                        <a class="color5" href="javascript: void(0);" (click)="setColor('info')"></a>
+                    </li>
+                    <li>
+                        <a class="color6" href="javascript: void(0);" (click)="setColor('amber')"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom">
+                <a href="javascript: void(0);" (click)="toggleSwitcher()" class="settings rounded-end text-white"><i-feather name="droplet"></i-feather></a>
+            </div>
+        </div>
+        <!-- end Style switcher -->

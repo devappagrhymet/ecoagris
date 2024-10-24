@@ -1,0 +1,180 @@
+
+   <!-- start navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar" (window:scroll)="windowScroll()">
+        <div  class="raw" style="background-color:black;height:25px"> 
+
+
+        </div>
+        <br>
+        <div class="container" appScrollspy [spiedTags]="['section']" (sectionChange)="onSectionChange($event)">
+
+            <a routerLink="/layout-one-1" class="navbar-brand me-5">
+                <img src="assets/images/logo-eco/logo _ecoagris.png" class="logo-light" alt="" height="80" />
+                <img src="assets/images/logo-eco/logo _ecoagris.png" class="logo-dark" alt="" height="80" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleMenu()">
+                <span class="navbar-toggle-icon"><i-feather name="menu"></i-feather></span>
+            </button>
+
+            <div class="collapse navbar-collapse" scrollSpy id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a [ngxScrollTo]="'#home'" class="nav-link" [ngClass]="{'active':curentsection === 'home'}" href="javascript:void(0);">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngxScrollTo]="'#services'" class="nav-link" [ngClass]="{'active':curentsection === 'services'}" href="javascript:void(0);">A propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngxScrollTo]="'#feature'" class="nav-link" [ngClass]="{'active':curentsection === 'feature'}" href="javascript:void(0);">Portail web</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngxScrollTo]="'#review'" class="nav-link" [ngClass]="{'active':curentsection === 'review'}" href="javascript:void(0);">Partenaire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [ngxScrollTo]="'#portfolio'" class="nav-link" [ngClass]="{'active':curentsection === 'portfolio'}" href="javascript:void(0);">Indicateurs</a>
+                    </li>
+                  <!--  <li class="nav-item">
+                       
+                    </li>  -->
+                </ul>
+                <!-- <a href="javascript:void(0);" class="btn btn-sm nav-btn text-primary mb-4 mb-lg-0 ms-auto" (click)="exampleModal.show()">Contact Us</a> -->
+            </div>
+
+          <!--   <button title="Langue" mat-icon-button [matMenuTriggerFor]="languageMenu" class="btn p-0 border-none rounded-circle position-relative">
+                <img src="img/flag/france.png" alt="France">
+            </button>
+            <mat-menu class="language-menu-dropdown" #languageMenu="matMenu" xPosition="after">
+                <ul class="m-0">
+                    <li>
+                        <button type="button" class="d-flex align-items-center border-none">
+                            <img src="img/flag/france.png" alt="France">
+                            France
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="d-flex align-items-center border-none">
+                            <img src="img/flag/usa.png" alt="usa">
+                            USA
+                        </button>
+                    </li>
+                   
+                </ul>
+            </mat-menu> -->
+            
+            <div>
+                <a href="#" title="Francais"><img src="../../../assets/images/flags/fr.png" height="20px"/></a>
+                &nbsp;
+                <a href="#" title="Anglais"><img src="../../../assets/images/flags/us.png" height="20px" /></a>
+                 <!--  <select class="form-select" aria-label="Default select example">
+                     <option value="fr">Francais</option>
+                    <option value="en">Anglais</option>
+                </select>
+             
+              <img src="assets/images/logo-eco/logo _cilss-landing.png" class="logo-light" alt="" />
+                &nbsp;
+                <img src="assets/images/logo-eco/logo _cedeao-landing.png" class="logo-light" alt="" />
+                &nbsp;
+                <img src="assets/images/logo-eco/logo _UEMOA-landing.png" class="logo-light" alt="" /> -->
+               
+              
+            </div>  
+          
+          
+
+        </div> 
+        <!-- end container -->
+    </nav>
+    <!-- end navbar -->
+    <div  style="padding-left:42%" class="navbar navbar-expand-lg fixed-top">
+        <!---------------Drapeau Pays------------------------------------>
+        <img src="assets/images/flags/Flag_Benin.png" width="30px" height="15px" alt="BN" style="margin-right:1%;">
+        
+        <img src="assets/images/flags/Flag_BF.png" width="30px" height="15px" alt="BF" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Cape_Vert.png" width="30px" height="15px" alt="CV" style="margin-right:1%;">
+    
+        <img src="assets/images/flags/Flag_Cote_Ivoire.png" width="30px" height="15px" alt="CI" style="margin-right:1%;">
+     
+        <img src="assets/images/flags/Flag_Gambia.png" width="30px" height="15px" alt="GB" style="margin-right:1%;">
+      
+        <img src="assets/images/flags/Flag_Guinee.png" width="30px" height="15px" alt="GN" style="margin-right:1%;">
+      
+        <img src="assets/images/flags/Flag_Guinee_Bissao.png" width="30px" height="15px" alt="GI" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Liberia.png" width="30px" height="15px" alt="LB" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Mali.png" width="30px" height="15px" alt="ML" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Mauritanie.png" width="30px" height="15px" alt="MR" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Niger.png" width="30px" height="15px" alt="NE" style="margin-right:1%;">
+     
+        <img src="assets/images/flags/Flag_Nigeria.png" width="30px" height="15px" alt="NG" style="margin-right:1%;">
+      
+        <img src="assets/images/flags/Flag_of_Ghana.png" width="30px" height="15px" alt="GH" style="margin-right:1%;">
+      
+        <img src="assets/images/flags/Flag_Senegal.png" width="30px" height="15px" alt="SN" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Sierra_Leone.png" width="30px" height="15px" alt="SL" style="margin-right:1%;">
+       
+        <img src="assets/images/flags/Flag_Tchad.png" width="30px" height="15px" alt="TD" style="margin-right:1%;">
+      
+        <img src="assets/images/flags/Flag_Togo.png" width="30px" height="15px" alt="TG">
+    </div>
+   
+         <!------====================================-->
+         
+        <!------====================================-->
+      <!-- Modal -->
+      <div bsModal #exampleModal="bs-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Get In Touch</h5>
+                    <button type="button" class="btn-close" (click)="exampleModal.hide()"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" name="myForm" (ngSubmit)="validSubmit()" [formGroup]="contactform">
+                        <span id="error-msg"></span>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-medium form-label" for="name">Name</label>
+                                        <input type="text" class="form-control" formControlName="name" placeholder="Your name" id="name" />
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-medium form-label" for="email">Email</label>
+                                        <input type="email" class="form-control" formControlName="email" placeholder="Your email" id="email" />
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-medium form-label" for="subject">Subject</label>
+                                        <input type="text" class="form-control" formControlName="subject" placeholder="your subject" id="subject" />
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="fw-medium form-label" for="number">Contact</label>
+                                        <input type="text" class="form-control" formControlName="contact" placeholder="+00 1234 5678 90" id="number" />
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-12 mb-3">
+                                        <label class="fw-medium form-label" for="comments">Message</label>
+                                        <textarea class="form-control" id="comments" formControlName="message" placeholder="Enter your message..." rows="5"></textarea>
+                                    </div>
+                                    <!-- end col -->
+                                    <div class="col-12">
+                                        <input type="submit" id="submit" name="send" class="btn btn-primary mt-2" value="Send Information" />
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </form>
+                    <!-- end form -->
+                </div>
+            </div>
+        </div>
+    </div>

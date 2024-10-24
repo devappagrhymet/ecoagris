@@ -1,0 +1,246 @@
+<div
+    class="sidebar-area bg-white box-shadow"
+    [ngClass]="{'active': isToggled}"
+    [class.dark-sidebar]="themeService.isSidebarDark()"
+    [class.right-sidebar]="themeService.isRightSidebar()"
+    [class.hide-sidebar]="themeService.isHideSidebar()"
+>
+    <div class="logo bg-white">
+        <a routerLink="/authentication" class="d-flex align-items-center">
+            <img src="img/logo _side.png" alt="logo">
+            <!-- <span>Tagus</span> -->
+        </a>
+    </div>
+    <div class="burger-menu" (click)="toggle()" [ngClass]="{'active': isToggled}">
+        <span class="top-bar"></span>
+        <span class="middle-bar"></span>
+        <span class="bottom-bar"></span>
+    </div>
+    <ng-scrollbar visibility="hover" style="height: 100vh;">
+        <div class="sidebar-inner">
+            <div class="sidebar-menu">
+                <mat-accordion>
+                    <!--======================================MENU ECOAGRIS==========================================================-->
+                    <span class="sub-title gray-color">INDICATEURS</span>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-bar-chart-3"></i>
+                                <span class="title">Indicateurs</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/indicateur" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Indicateur
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/variable" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Variable
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/conf-ind-var" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Config Ind. Var.
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/config-formule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Config Formule
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============-->
+                    <span class="sub-title gray-color">SOUS-SYSTEMES</span>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="mdi mdi-corn"></i>
+                                 <i class="flaticon-snowflake"></i>
+                                <span class="title">
+                                    <a routerLink="/prodagric" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                             
+                                    Prod. agricole
+                                    </a>
+                                
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodagric/generateur" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Calcul des indicateurs
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodagric/indicitem" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Indicateurs agricoles
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-bar-chart-1"></i>
+                        <span class="title">Marché</span>
+                    </a>
+                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-wind"></i>
+                        <span class="title">Agro-Hyd-Météo</span>
+                    </a>
+                    <a  class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-twitter"></i>
+                        <span disabled class="title">Elevage</span>
+                    </a>
+                    <a class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-pie-chart"></i>
+                        <span disabled class="title">Peche et Aqua</span>
+                    </a>
+                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-truck"></i>
+                        <span class="title">Intrant</span>
+                    </a>
+                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-pie-chart"></i>
+                        <span class="title">Nutrition</span>
+                    </a>
+                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-sun"></i>
+                        <span class="title">Res. Nat. et CC</span>
+                    </a>
+                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-pie-chart-6"></i>
+                        <span class="title">Macroéconomie</span>
+                    </a>
+                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-file-2"></i>
+                        <span class="title">Recherche</span>
+                    </a>
+                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-notification"></i>
+                        <span class="title">Alert précoce</span>
+                    </a>
+                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-pie-chart"></i>
+                        <span class="title">Stock</span>
+                    </a>
+                    <!--==============-->
+                    <span class="sub-title gray-color">PARAMETRES</span>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-setting"></i>
+                                <span class="title">Div. Admin.</span>
+                                <!-- <span class="badge two">4</span> -->
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/divadmin/list"  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Division administrative
+                                </a>
+                            </li>
+                         <!--    <li class="sidemenu-item">
+                                <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Zone
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Bassin
+                                </a>
+                            </li> -->
+                        </ul>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-setting"></i>
+                                <span class="title">Indicateurs</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a  routerLink="/frequence/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Fréquence
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a  routerLink="/unite/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Unite
+                                </a>
+                            </li>
+                            <li class="sidemenu-item"> 
+                                <a  routerLink="/sousysteme/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Sous système
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a  routerLink="/campagne/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Campagne
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a  routerLink="/niveau/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Niveau
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-setting"></i>
+                                <span class="title">Prod. agricole</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                          <!--   <li class="sidemenu-item">
+                                <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Catégorie
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Spéculation
+                                </a>
+                            </li> -->
+                        </ul>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-setting"></i>
+                                <span class="title">Utilisateurs</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                           <!--  <li class="sidemenu-item">
+                                <a routerLink="/user/profil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Profil
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a  routerLink="/user/compte/{{id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Compte
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/user/securite" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Securite
+                                </a>
+                            </li> -->
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============-->
+                    <!--=======================================FIN MENU ECOAGRIS=====================================================-->
+                    <a routerLink="/authentication/logout" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-tools"></i>
+                        <span class="title">Logout</span>
+                    </a>
+                </mat-accordion>
+            </div>
+        </div>
+    </ng-scrollbar>
+</div>

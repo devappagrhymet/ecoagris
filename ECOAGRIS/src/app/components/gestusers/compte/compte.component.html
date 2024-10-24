@@ -1,0 +1,149 @@
+<mat-card
+    class="mb-25 tagus-card"
+    [class.component-dark-theme]="themeService.isDark()"
+    [class.component-rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <mat-card-header class="border-bottom">
+        <h5 class="mb-0">Configuration profil</h5>
+    </mat-card-header>
+    <mat-card-content>
+        <nav>
+            <ul class="ps-0 mt-0">
+                <li>
+                    <a routerLink="/user/compte/{{id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Compte</a>
+                </li>
+                <li>
+                    <a routerLink="/user/securite" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Sécurité</a>
+                </li>
+                <!--  <li>
+                    <a routerLink="/connections" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Connections</a>
+                </li>
+                <li>
+                    <a routerLink="/privacy-policy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Privacy Policy</a>
+                </li>
+                <li>
+                    <a routerLink="/terms-conditions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Terms & Conditions</a>
+                </li> -->
+            </ul>
+        </nav>
+        <form [formGroup]="utilisateurForm"  (ngSubmit)="onFormSubmit()" novalidate>
+
+            <h5 class="fw-semibold mb-8">Profile</h5>
+            <p>Mettez à jour votre photo et vos informations personnelles ici.</p>
+            <div class="row mt-20">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Nom</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-user-3-line"></i>
+                            <input matInput  formControlName="nomUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Prénom(s)</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-user-3-line"></i>
+                            <input matInput  formControlName="prenomUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">E-mail </label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-mail-line"></i>
+                            <input matInput  formControlName="emailUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Téléphone</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-phone-line"></i>
+                            <input matInput matInput  formControlName="telephoneUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Structure</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-home-7-line"></i>
+                            <input matInput formControlName="structureUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Département</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-home-7-line"></i>
+                            <input matInput formControlName="departementUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Fonction</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-cake-2-line"></i>
+                            <input matInput formControlName="fonctionUser">
+                        </mat-form-field>
+                    </div>
+                </div>
+               <!--  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Profil</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-men-line"></i>
+                            <input matInput formControlName="profil">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Division administrative</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-men-line"></i>
+                            <input matInput formControlName="divisionadministrative">
+                        </mat-form-field>
+                    </div>
+                </div> -->
+            </div>
+            <h5 class="fw-semibold mb-8 mt-5">Photo profil</h5>
+            <!-- <p>This will be displayed on your profile.</p> -->
+            <div class="d-flex align-items-center">
+                <img src={{photo_profil}} alt={{photo_profil}} class="rounded-circle" width="110" alt="user">
+                <div class="tagus-form-group ms-20">
+                    <label class="d-block mb-12 fw-semibold gray-color">Upload Image</label>
+                    <input type="file">
+                </div>
+            </div>
+           <!--  <h5 class="fw-semibold mb-20 mt-25">Socials Profile</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Facebook</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-facebook-fill"></i>
+                            <input matInput value="https://www.facebook.com/">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="tagus-form-group">
+                        <label class="d-block mb-12 fw-semibold gray-color">Linkedin</label>
+                        <mat-form-field appearance="fill">
+                            <i class="ri-linkedin-fill"></i>
+                            <input matInput value="https://www.linkedin.com/">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div> -->
+            <button mat-raised-button class="tagus fw-semibold"  type="submit">Modifier</button>
+        </form>
+    </mat-card-content>
+</mat-card>

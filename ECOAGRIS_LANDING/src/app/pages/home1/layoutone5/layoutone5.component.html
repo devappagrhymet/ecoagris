@@ -1,0 +1,58 @@
+   <!-- start hero -->
+   <section class="hero-one-5 position-relative overflow-hidden align-items-center justify-content-center d-flex section" id="home">
+    <div class="hero-one-5-overlay position-absolute top-0 end-0 bottom-0 start-0"></div>
+    <div class="hero-one-5-bg position-absolute top-0 end-0 bottom-0 start-0" style="background-image: url(assets/images/hero-one-5-bg.png);"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-6">
+                <div class="text-white">
+                    <h1 class="fw-medium mb-4 pb-2">
+                        Take Your <br />
+                        Project To The Next <br />
+                        Level
+                    </h1>
+                    <div class="d-flex">
+                        <span><i-feather class="icon-xs d-inline-block me-1" name="thumbs-up"></i-feather></span>
+                        <div class="d-inline-block ms-2">
+                            <a class="align-middle fw-normal text-white fs-18">We Build Degital Products.</a>
+                            <p class="text-white-50 my-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptatum sint qui beatae nemo maxime nulla cumque aut nobis.</p>
+                            <a class="fw-medium align-middle text-white" href="javascript:void(0);">Learn More <i-feather class="icon-xs" name="chevrons-right"></i-feather> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-sm-0 mt-5">
+                <div class="position-relative">
+                    <img class="rounded img-fluid mx-auto d-block" src="assets/images/hero-one-5-img.jpg" alt="" />
+                    <div class="play-box" (click)="watchvideomodal.show()">
+                        <a href="javascript: void(0);" class="video-button bg-white text-primary">
+                            <i-feather class="bg-white text-primary d-inline-block" name="video"></i-feather>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div bsModal #watchvideomodal="bs-modal" class="modal fade bd-example-modal-lg" id="watchvideomodal" data-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
+                        <div class="modal-content hero-modal border-0 bg-transparent">
+                            <button type="button" class="btn-close" (click)="watchvideomodal.hide()"></button>
+                            <video id="VisaChipCardVideo" class="video-box w-100" controls>
+                                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                                <!--Browser does not support <video> tag -->
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end container -->
+</section>
+
+    
+<app-services></app-services>
+<app-features></app-features>
+<app-clients></app-clients>
+<app-portfolio></app-portfolio>
+<app-pricing></app-pricing>
+<app-contact></app-contact>

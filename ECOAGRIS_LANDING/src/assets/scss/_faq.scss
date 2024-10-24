@@ -1,0 +1,102 @@
+// faq.scss
+
+.custom-accordionwithicon-plus {
+
+    .panel-heading,
+    .panel-body {
+        padding: 0 !important;
+    }
+
+    .accordion-body {
+        color: #a5a5bf !important;
+    }
+
+    .card-header {
+        border: none;
+        padding: 0 !important;
+    }
+
+    .panel {
+        border: none;
+        margin-bottom: 0;
+        box-shadow: none;
+        border-top: 0;
+    }
+
+    .accordion-button {
+
+        &::after {
+            display: none;
+        }
+
+        &::before {
+            background-image: none !important;
+            font-family: "tabler-icons";
+            content: "✛";
+            // font-size: 1.1rem;
+            vertical-align: middle;
+            line-height: 20px;
+            color: #6d62fd !important;
+            margin-right: 10px
+        }
+
+        &:not(.collapsed) {
+            box-shadow: none;
+
+            &::before {
+                background-image: none !important;
+                content: "✛";
+                margin-right: 10px;
+                color: #6d62fd !important;
+
+            }
+        }
+    }
+
+    .accordion-item {
+        border: 0;
+
+        &.panel:first-child {
+            border-top: none;
+        }
+
+        &.panel-open {
+            .accordion-toggle {
+                &[aria-expanded="true"] {
+                    .accordion-button {
+                        &::before {
+                            background-image: none !important;
+                            content: "─";
+                            margin-right: 10px;
+                            font-family: "Material Design Icons";
+                            color: #6d62fd !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.faq-img {
+    .faq-ask {
+        letter-spacing: 2px;
+        position: absolute;
+        right: -110px;
+        bottom: 110px;
+        transform: rotate(90deg);
+
+    }
+}
+
+@media (max-width:576px) {
+    .faq-img {
+        .faq-ask {
+            letter-spacing: 2px;
+            position: absolute;
+            right: -50px;
+            bottom: 110px;
+            transform: rotate(90deg);
+        }
+    }
+}

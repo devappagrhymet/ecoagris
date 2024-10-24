@@ -1,0 +1,47 @@
+.tableFixHead          { overflow-y:scroll; min-height: 150px; max-height: 650px; }
+.tableFixHead thead th { position: sticky; top: 0; z-index: 1; }
+
+.tr1{
+    background-color:#fff;
+}
+  
+.tr2{
+    background-color: #DBEACD;
+}
+
+.badge_oui {
+    color: #00B69B;
+    background: rgba(0, 182, 155, 0.1);
+}
+
+.badge_non {
+    color: #EE368C;
+    background: rgba(238, 54, 140, 0.1);
+}
+
+
+.badge_enveille {
+    color: #606003;
+    background:#ebe47a5d;
+}
+
+
+/* .badge {
+    --badge-padding-x: 12px;
+    --badge-padding-y: 0.40em;
+    --badge-font-size: 13px;
+    --badge-font-weight: 600;
+    --badge-color: #fff;
+    --badge-border-radius: 0.375rem;
+    display: inline-block;
+    padding: var(--badge-padding-y) var(--badge-padding-x);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    line-height: 1;
+    color: var(--badge-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--badge-border-radius);
+}
+ */

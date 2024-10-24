@@ -1,0 +1,97 @@
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
+    <h5 class="mb-0">Variable</h5>
+    <ol class="breadcrumb mb-0 ps-0">
+        <li class="breadcrumb-item">
+            <a routerLink="/">
+                <i class="ri-home-8-line"></i>
+                Home
+            </a>
+        </li>
+        <li class="breadcrumb-item fw-semibold">Variable</li>
+    </ol>
+</div>
+
+<mat-card class="mb-25 tagus-card">
+    <mat-card-header>
+        <h5 class="mb-0">Liste</h5>
+        <button mat-flat-button style="background-color:green" class="default-btn" 
+            routerLink="/variable/add-edit"
+            >
+            <i class="ri-add-fill"></i> Add
+        </button>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- #class="myTasksTable mat-elevation-z8 tagus-mat-table" -->
+        <div   class="table-container  tableFixHead table-striped">
+            <table mat-table [dataSource]="dataSource">
+                <!--=========================-->
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+    
+                <!-- Code Column -->
+                <ng-container matColumnDef="code">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Code</th>
+                    <td mat-cell *matCellDef="let row"> {{row.code}}</td>
+                </ng-container>
+                
+                <!-- libelle Column -->
+                <ng-container matColumnDef="libelle">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle</th>
+                    <td mat-cell *matCellDef="let row"> {{row.libelle}}</td>
+                </ng-container>
+    
+                <!--=========================-->
+                
+                <!-- Status Column 
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef>Status</th>
+                    <td mat-cell *matCellDef="let element">
+                        <span class="badge fw-medium" *ngIf="element.status.ongoing">{{element.status.ongoing}}</span>
+                        <span class="badge pending fw-medium" *ngIf="element.status.pending">{{element.status.pending}}</span>
+                        <span class="badge completed fw-medium" *ngIf="element.status.completed">{{element.status.completed}}</span>
+                    </td>
+                </ng-container>-->
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let row">
+                        <!---------------->
+                        <button type="button" mat-button class="position-relative dot-btn p-0 bg-transparent border-none" [matMenuTriggerFor]="actionMenu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #actionMenu="matMenu" class="dotMenu two monthMenu" xPosition="before">
+                
+                            <button mat-menu-item type="button"
+                                    class="bg-transparent border-none position-relative"
+                                    (click)="_updateVariable(row.id)">
+                                    <i style="color:blue" class="ri-edit-line"></i> Modifier
+                            </button>
+                            <button mat-menu-item type="button"
+                                    class="bg-transparent border-none position-relative"
+                                    (click)="_deleteVariable(row.id)">
+                                    <i style="color:red" class="ri-delete-bin-line"></i> Supprimer
+                            </button>
+                        </mat-menu>
+                        <!---------------->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row  *matRowDef="let row; columns: displayedColumns; let i = index" class="mat-row"
+                    [@listItem]="animationStates[i]"
+                    (mouseenter)="onListItemMouseEnter(i)"
+                    (mouseleave)="onListItemMouseLeave(i)"></tr>
+                
+            </table>
+            <mat-paginator
+                [pageSizeOptions]="[5, 10, 20, 40]"
+                showFirstLastButtons
+            >
+            </mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>

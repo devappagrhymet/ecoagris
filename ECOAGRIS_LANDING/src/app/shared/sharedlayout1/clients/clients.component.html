@@ -1,0 +1,40 @@
+<!--what client says -->
+<section class="section" id="review">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8 text-center">
+                <h2 class="fs-3 fw-medium lh-1 text-dark mb-3">What Client Says</h2>
+                <p class="text-muted">
+                    It is a long established fact that create category leading brand experiences a reader will be distracted by the readable content of a page when looking at its layout.
+                </p>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12 mt-4 pt-2">
+
+                <ngx-slick-carousel class="carousel" [config]="slideConfig"  class="client-slider-one overflow-hidden" id="client1">
+                        @for(slide of slides; track $index){
+                        <div class="swiper-slide border client-box" ngxSlickItem>
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 align-middle border-end name-box">
+                                    <i-feather class="icon-lg sw-1 text-primary mt-3" name="message-circle"></i-feather>
+                                    <h5 class="text-dark fs-18 text-truncate mt-4">{{slide.name}} </h5>
+                                    <p class="text-muted mb-3">{{slide.role}}</p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-muted ps-lg-3">
+                                        {{slide.message}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                </ngx-slick-carousel>
+            </div>
+        </div>
+    </div>
+    <!-- end container -->
+</section>
+<!-- end what client says -->
+

@@ -1,0 +1,166 @@
+.carousel-control-next, .carousel-control-prev{
+    display: block;
+}
+
+
+// client
+#client1{
+    height: 220px !important;
+    .client-box{
+        margin: 5px !important;
+    }
+    
+    .slick-dots{
+        bottom: -9px;
+        z-index: 1;
+    
+        .slick-active{
+            button{
+                background-color: #6d62fd !important;
+            }
+        }
+    }
+    
+    .slick-dots li{
+        height: -40px !important;
+    }
+    .slick-dots li button {
+        width: 15px !important;
+        height: 4px !important;
+        border: none;
+        background-color: rgba(109,98,253,.2) !important;
+        padding: 0px;
+        margin: 0px 4px;
+        transition: all .3s;
+        border-radius: 30px;
+    
+        &::before{
+            display: none;
+        }
+    }
+
+}
+
+// layout1 ->layout-one-3
+#crouselthree{
+    .carousel-indicators [data-bs-target]{
+        background-color: rgba(109, 98, 253, 0.05) !important;
+        width: 18px !important;
+        height: 5px !important;
+        border: none;
+        transition: all .3s;
+        border-radius: 30px  
+    }
+    .carousel-indicators .active {
+        background-color: #6d62fd !important;
+    }
+}
+
+
+// layout1 - home layout -6
+.video-section{
+    height: 538px;
+    .slick-slide{
+        padding-right: 27px !important;
+    }
+    .slick-dots{
+        bottom: -9px !important;
+        z-index: 1 !important;
+    
+        .slick-active{
+            button{
+                background-color: #6d62fd !important;
+            }
+        }
+    }
+    .slick-dots li button {
+        width: 15px !important;
+        height: 5px !important;
+        border: none;
+        background-color: rgba(109,98,253,.2) !important;
+        padding: 0px;
+        margin: 0px 4px;
+        transition: all .3s;
+        border-radius: 30px;
+    
+        &::before{
+            display: none;
+        }
+    
+    }
+
+}
+
+
+// layout2 - clients
+#client2{
+    height: 300px !important;
+    .slick-dots{
+        bottom: -36px;
+        z-index: 1;
+    
+        .slick-active{
+            button{
+                background-color: #6d62fd !important;
+            }
+        }
+    }
+
+    .slick-dots li{
+        height: 45px !important;
+    }
+    .slick-dots li button {
+        width: 15px !important;
+        height: 4px !important;
+        border: none;
+        background-color: rgba(109,98,253,.2) !important;
+        padding: 0px;
+        margin: 0px 4px;
+        transition: all .3s;
+        border-radius: 30px;
+    
+        &::before{
+            display: none;
+        }
+    
+    }
+
+}
+
+// layout2 - home-layout3
+#layout3{
+    height: 573px !important;
+    .slick-slide{
+        padding-right: 27px;
+    }
+    .slick-dots{
+        bottom: -9px;
+        z-index: 1;
+    
+        .slick-active{
+            button{
+                background-color: #6d62fd !important;
+            }
+        }
+    }
+    .slick-dots li button {
+        width: 15px !important;
+        height: 5px !important;
+        border: none;
+        background-color: rgba(109,98,253,.2) !important;
+        padding: 0px;
+        margin: 0px 4px;
+        transition: all .3s;
+        border-radius: 30px;
+    
+        &::before{
+            display: none;
+        }
+    
+    }
+
+}
+// layout2 - home-layout3
+.slick-slider{
+    z-index: 1;
+}

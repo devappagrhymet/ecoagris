@@ -1,0 +1,46 @@
+<!-- start navbar -->
+<nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar" (window:scroll)="windowScroll()">
+    <div class="container" appScrollspy [spiedTags]="['section']" (sectionChange)="onSectionChange($event)">
+        <a routerLink="/layout-one-1" class="navbar-brand">
+            <img src="assets/images/logo-light.png" class="logo-light" alt="" height="22" />
+            <img src="assets/images/logo-dark.png" class="logo-dark" alt="" height="22" />
+        </a>
+        <a href="javascript:void(0)" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleMenu()">
+            <span class="navbar-toggle-icon"><i-feather name="menu"></i-feather></span>
+        </a>
+
+        <div class="collapse navbar-collapse" scrollSpy id="navbarNav">
+            <ul class="navbar-nav mx-auto navbar-center mt-lg-0 mt-2">
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#home'" class="nav-link" [ngClass]="{'active':curentsection === 'home'}"
+                        href="javascript:void(0);">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#services'" class="nav-link" [ngClass]="{'active':curentsection === 'services'}"
+                        href="javascript:void(0);">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#feature'" class="nav-link" [ngClass]="{'active':curentsection === 'feature'}"
+                        href="javascript:void(0);">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#review'" class="nav-link" [ngClass]="{'active':curentsection === 'review'}"
+                        href="javascript:void(0);">Clients</a>
+                </li>
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#portfolio'" class="nav-link"
+                        [ngClass]="{'active':curentsection === 'portfolio'}" href="javascript:void(0);">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a [ngxScrollTo]="'#pricing'" class="nav-link" [ngClass]="{'active':curentsection === 'pricing'}"
+                        href="javascript:void(0);">Pricing</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="btn btn-sm nav-btn text-primary mb-4 mb-lg-0">Build Yours <i-feather
+                    class="icon-xxs ms-1" name="chevrons-right"></i-feather></a>
+        </div>
+    </div>
+    <!-- end container -->
+</nav>
+<!-- end navbar -->
