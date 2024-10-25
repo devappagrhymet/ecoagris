@@ -363,6 +363,41 @@ def indicateurItemByAnnee(request, *args, **kwargs):
     return Response(r_options)  
 
 
+#---
+@api_view(('GET',))
+def getProdPays(request, *args, **kwargs):
+    
+    r_options = [] 
+    
+    
+    params_campagne = request.query_params.get('params_campagne',None)
+    params_pays = request.query_params.get('params_pays',None)
+    params_indicateur = request.query_params.get('params_indicateur',None)
+
+    result = (ProdagricIndItem.objects
+                            .values('id','campagne','indicateur','speculation','divisionadministrative')
+                            .filter(campagne=params_campagne,pays_id=params_pays,indicateur=params_indicateur)
+                            .annotate(valeur_gen=Sum('valeur_gen'))
+                            .order_by('campagne')
+            )
+    
+    if (result):
+        r_options = {
+            "message": "Données disponible",
+            "status": status.HTTP_200_OK,
+            "result": result
+        }
+    else:
+        r_options = {
+            "message": "Données non disponible",
+            "status": status.HTTP_404_NOT_FOUND,
+            "result": []
+        }
+
+    return Response(r_options)  
+
+
+
 # Detail View des valeurs génerées des indicateurs  
 class AlphaViewset(ModelViewSet):
 

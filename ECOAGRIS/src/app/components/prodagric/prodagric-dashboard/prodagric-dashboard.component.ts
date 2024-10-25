@@ -186,74 +186,74 @@ export class ProdagricDashboardComponent {
       }
   };
 
-  this.chartOptions_2 = {
-    series: [
-        {
-          name: "Rendement du Mil",
-          data: [36390, 30342, 29939, 35226, 37144, 36480]
-        }
-    ],
-    chart: {
-        height: 350,
-        type: "bar",
-        events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-        }
-    },
-    colors: [
-        "#008FFB",
-        "#00E396",
-        "#FEB019",
-        "#FF4560",
-        "#775DD0",
-        "#546E7A",
-        "#26a69a",
-        "#D10CE8"
-    ],
-    plotOptions: {
-        bar: {
-            columnWidth: "45%",
-            distributed: true
-        }
-    },
-    dataLabels: {
-        enabled: false
-    },
-    legend: {
-        show: false
-    },
-    grid: {
-        show: false
-    },
-    xaxis: {
-      categories: [
-        "2012",
-        "2013",
-        "2014",
-        "2015",
-        "2016",
-        "2017"
-      
-    ],
-        labels: {
-            style: {
-                colors: [
-                    "#008FFB",
-                    "#00E396",
-                    "#FEB019",
-                    "#FF4560",
-                    "#775DD0",
-                    "#546E7A",
-                    "#26a69a",
-                    "#D10CE8"
-                ],
-                fontSize: "12px"
-            }
-        }
-    }
-};
+    this.chartOptions_2 = {
+      series: [
+          {
+            name: "Rendement du Mil",
+            data: [36390, 30342, 29939, 35226, 37144, 36480]
+          }
+      ],
+      chart: {
+          height: 350,
+          type: "bar",
+          events: {
+              click: function(chart, w, e) {
+                  // console.log(chart, w, e)
+              }
+          }
+      },
+      colors: [
+          "#008FFB",
+          "#00E396",
+          "#FEB019",
+          "#FF4560",
+          "#775DD0",
+          "#546E7A",
+          "#26a69a",
+          "#D10CE8"
+      ],
+      plotOptions: {
+          bar: {
+              columnWidth: "45%",
+              distributed: true
+          }
+      },
+      dataLabels: {
+          enabled: false
+      },
+      legend: {
+          show: false
+      },
+      grid: {
+          show: false
+      },
+      xaxis: {
+        categories: [
+          "2012",
+          "2013",
+          "2014",
+          "2015",
+          "2016",
+          "2017"
+        
+      ],
+          labels: {
+              style: {
+                  colors: [
+                      "#008FFB",
+                      "#00E396",
+                      "#FEB019",
+                      "#FF4560",
+                      "#775DD0",
+                      "#546E7A",
+                      "#26a69a",
+                      "#D10CE8"
+                  ],
+                  fontSize: "12px"
+              }
+          }
+      }
+  };
     
   }
 

@@ -79,17 +79,17 @@
 
   <!--========================================================-->
 
-<mat-card class="mb-25 tagus-card">
+<!--<mat-card class="mb-25 tagus-card">
     <mat-card-header>
         <h5 class="mb-0">Indicateurs agricoles</h5>
        
     </mat-card-header>
     <mat-card-content>
-         <!-- #class="myTasksTable mat-elevation-z8 tagus-mat-table" -->
+        
         <div   class="row table-container  tableFixHead table-striped">
             <table mat-table [dataSource]="dataSource" matSort>
   
-                <!-- ID Column -->
+               
                 <ng-container matColumnDef="id">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
                   <td mat-cell *matCellDef="let row"> {{row.id}} </td>
@@ -100,7 +100,7 @@
                   <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
                 </ng-container>
     
-                <!-- Progress Column -->
+               
                 <ng-container matColumnDef="valeur">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
                   <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
@@ -144,7 +144,7 @@
                  (mouseenter)="onListItemMouseEnter(i)"
                  (mouseleave)="onListItemMouseLeave(i)"></tr>
     
-                <!-- Row shown when there is no matching data. -->
+               
                 <tr class="mat-row" *matNoDataRow>
                   <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                 </tr>
@@ -156,4 +156,216 @@
             </mat-paginator>
         </div>
     </mat-card-content>
+</mat-card>-->
+
+
+<!--===========================================================-->
+<mat-card class="mb-25 tagus-card" [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+  <mat-card-header class="border-bottom">
+      <h5 class="mb-0">Indicateurs agricoles</h5>
+  </mat-card-header>
+  <mat-card-content>
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+          <!--=======================Data  Pays====================================-->
+          <mat-tab label="Pays">
+              <br> 
+              <div   class="row table-container  tableFixHead table-striped">
+                  <table mat-table [dataSource]="dataSourcePays" sortPays>
+        
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="campagne">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                        <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="valeur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                        <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="unite">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="indicateur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="speculation">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
+                        <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="divadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> Niger</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="libDivadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> Pays </td>
+                      </ng-container>
+          
+          
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                      [@listItem]="animationStates[i]"
+                      (mouseenter)="onListItemMouseEnter(i)"
+                      (mouseleave)="onListItemMouseLeave(i)"></tr>
+          
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                      </tr>
+                    </table>
+                  <mat-paginator
+                      [pageSizeOptions]="[7, 10, 20, 40]"
+                      showFirstLastButtons
+                  >
+                  </mat-paginator>
+              </div>
+          </mat-tab>
+          <!--=======================Fin Data  Pays====================================-->
+          <!--=======================Data  Niveau 1====================================-->
+          <mat-tab label="Niveau 1">
+              <br> 
+              <div   class="row table-container  tableFixHead table-striped">
+                  <table mat-table [dataSource]="dataSourceNiveau1" sortNiveau1>
+        
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="campagne">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                        <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="valeur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                        <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="unite">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="indicateur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="speculation">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
+                        <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="divadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="libDivadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> Région</td>
+                      </ng-container>
+          
+          
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                      [@listItem]="animationStates[i]"
+                      (mouseenter)="onListItemMouseEnter(i)"
+                      (mouseleave)="onListItemMouseLeave(i)"></tr>
+          
+                      <!-- Row shown when there is no matching data. -->
+                      <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                      </tr>
+                    </table>
+                  <mat-paginator
+                      [pageSizeOptions]="[7, 10, 20, 40]"
+                      showFirstLastButtons
+                  >
+                  </mat-paginator>
+              </div>
+          </mat-tab>
+          <!--=======================Fin Data  Niveau 1====================================-->
+          <!--=======================Data  Niveau 2====================================-->
+          <mat-tab label="Niveau 2">
+                <br> 
+                <div   class="row table-container  tableFixHead table-striped">
+                    <table mat-table [dataSource]="dataSource" matSort>
+          
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="campagne">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                          <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="valeur">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                          <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="unite">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                          <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="indicateur">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
+                          <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                        </ng-container>
+          
+                        <ng-container matColumnDef="speculation">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
+                          <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="divadmin">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                          <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="libDivadmin">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                          <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.libelleNiveauDivision}}</td>
+                        </ng-container>
+            
+            
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                        [@listItem]="animationStates[i]"
+                        (mouseenter)="onListItemMouseEnter(i)"
+                        (mouseleave)="onListItemMouseLeave(i)"></tr>
+            
+                        <!-- Row shown when there is no matching data. -->
+                        <tr class="mat-row" *matNoDataRow>
+                          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        </tr>
+                      </table>
+                    <mat-paginator
+                        [pageSizeOptions]="[7, 10, 20, 40]"
+                        showFirstLastButtons
+                    >
+                    </mat-paginator>
+                </div>
+          </mat-tab>
+          <!--=======================Fin Data  Niveau 2====================================-->
+      </mat-tab-group>
+
+  </mat-card-content>
 </mat-card>
+<!--===========================================================-->

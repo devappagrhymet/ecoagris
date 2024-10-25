@@ -3,6 +3,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatMenuModule } from "@angular/material/menu";
 import { RouterLink } from "@angular/router";
+
 import {
     ChartComponent,
     ApexAxisChartSeries,
@@ -13,10 +14,13 @@ import {
     ApexTitleSubtitle,
     ApexStroke,
     ApexGrid,
-    NgApexchartsModule
-} from "ng-apexcharts";
-
-export type ChartOptions = {
+    NgApexchartsModule,
+    ApexPlotOptions,
+    ApexLegend,
+     
+  } from "ng-apexcharts";
+  
+  export type ChartOptions = {
     series: ApexAxisChartSeries;
     chart: ApexChart;
     yaxis: ApexYAxis;
@@ -26,7 +30,20 @@ export type ChartOptions = {
     colors: any;
     stroke: ApexStroke;
     title: ApexTitleSubtitle;
-};
+  };
+  
+  export type ChartOptions_2 = {
+    series: ApexAxisChartSeries;
+    chart: ApexChart;
+    dataLabels: ApexDataLabels;
+    plotOptions: ApexPlotOptions;
+    yaxis: ApexYAxis;
+    xaxis: ApexXAxis;
+    grid: ApexGrid;
+    colors: string[];
+    legend: ApexLegend;
+  };
+  
 
 @Component({
   selector: 'app-prodagric-stats',
@@ -37,48 +54,40 @@ export type ChartOptions = {
 })
 export class ProdagricStatsComponent {
      
-  
-  /* series: [
-    {
-      name: "Quantité produite (T)",
-      data: [3862158, 2921981, 3321752, 3404812, 3878009, 3790026]
-    }, 
-],
 
-categories:  ["2012", "2013", "2014", "2015", "2016", "2017"], */
-   
-
-    
     @ViewChild("chart") chart: ChartComponent;
     public chartOptions: Partial<ChartOptions>;
-
+  
+   
+    public chartOptions_2: Partial<ChartOptions_2>;
+   
     constructor() {
         this.chartOptions = {
             series: [
                 {
-                    name: "Quantité produite (T)",
-                    data: [3862158, 2921981, 3321752, 3404812, 3878009, 3790026]
+                    name: "Part de l'agriculture dans le PIB",
+                    data: [24.78, 22.73, 23.98, 23.82, 26.48]
                 }
             ],
             chart: {
                 height: 350,
                 type: "line",
                 zoom: {
-                    enabled: true
+                    enabled: false
                 },
                 toolbar: {
                     show: true
                 }
             },
             dataLabels: {
-                enabled: true
+                enabled: false
             },
-            colors: ["#757fef"],
+            colors: ["#ff0000"],
             stroke: {
                 curve: "straight"
             },
             title: {
-                text: "Quantité produite (T)",
+                text: "Courbe de tendance",
                 align: "left"
             },
             grid: {
@@ -91,11 +100,16 @@ categories:  ["2012", "2013", "2014", "2015", "2016", "2017"], */
                 }
             },
             xaxis: {
-                categories:  ["2012", "2013", "2014", "2015", "2016", "2017"],
-                
+                categories: [
+                    "2012",
+                    "2013",
+                    "2014",
+                    "2015",
+                    "2016"
+                ],
                 labels: {
                     style: {
-                        colors: "#a9a9c8",
+                        colors: "#000",
                         fontSize: "14px"
                     }
                 }
@@ -112,6 +126,74 @@ categories:  ["2012", "2013", "2014", "2015", "2016", "2017"], */
                 }
             }
         };
+      
+        this.chartOptions_2 = {
+        series: [
+            {
+                name: "Part de l'agriculture dans le PIB",
+                data: [24.78, 22.73, 23.98, 23.82, 26.48]
+            }
+        ],
+        chart: {
+            height: 350,
+            type: "bar",
+            events: {
+                click: function(chart, w, e) {
+                    // console.log(chart, w, e)
+                }
+            }
+        },
+        colors: [
+            "#008FFB",
+            "#00E396",
+            "#FEB019",
+            "#FF4560",
+            "#775DD0",
+            "#546E7A",
+            "#26a69a",
+            "#D10CE8"
+        ],
+        plotOptions: {
+            bar: {
+                columnWidth: "25%",
+                distributed: true
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false
+        },
+        grid: {
+            show: false
+        },
+        xaxis: {
+            categories: [
+                "2012",
+                "2013",
+                "2014",
+                "2015",
+                "2016"
+            ],
+            labels: {
+                style: {
+                    colors: [
+                        "#008FFB",
+                        "#00E396",
+                        "#FEB019",
+                        "#FF4560",
+                        "#775DD0",
+                        "#546E7A",
+                        "#26a69a",
+                        "#D10CE8"
+                    ],
+                    fontSize: "12px"
+                }
+            }
+        }
+    };
+          
     }
 
 }

@@ -45,8 +45,8 @@ urlpatterns = [
     path('api/prodagric/nbr_indicateur',        views.nbrIndicateur, name='nbr_indicateur'),
     path('api/prodagric/nbr_sousysteme',        views.nbrSousysteme, name='nbr_sousysteme'),
     path('api/prodagric/nbr_pays',              views.nbrPays, name='nbr_pays'),
-    path('api/prodagric/indicateurItemByAnnee', views.indicateurItemByAnnee, name='indicateurItemByAnnee')
-
+    path('api/prodagric/indicateurItemByAnnee', views.indicateurItemByAnnee, name='indicateurItemByAnnee'),
+    path('api/prodagric/getProdPays',           views.getProdPays, name='getProdPays')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
