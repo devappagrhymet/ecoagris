@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox
   standalone: true,
   imports: [MatCardModule, MatStepperModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
             MatInputModule, MatSelectModule, StepperResponsiveComponent, MatButtonModule, NgFor, HttpClientModule,
-            RouterLink, MatMenuModule, FormsModule, MatCheckboxModule ],
+            RouterLink, MatMenuModule, FormsModule, MatCheckboxModule, HeaderComponent ],
   templateUrl: './config-formule-add-edit.component.html',
   styleUrl: './config-formule-add-edit.component.scss',
   providers: [

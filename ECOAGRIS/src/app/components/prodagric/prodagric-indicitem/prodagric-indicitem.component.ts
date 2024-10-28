@@ -21,6 +21,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { HeaderComponent } from '../../common/header/header.component';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
   imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, 
             MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule,
             MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor,
-            MatCardModule, MatTabsModule, MatIconModule],
+            MatCardModule, MatTabsModule, MatIconModule, HeaderComponent],
   templateUrl: './prodagric-indicitem.component.html',
   styleUrl: './prodagric-indicitem.component.scss',
   animations: [

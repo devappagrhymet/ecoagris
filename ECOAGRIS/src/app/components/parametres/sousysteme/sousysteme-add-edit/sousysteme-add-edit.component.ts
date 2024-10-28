@@ -10,13 +10,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-sousysteme-add-edit',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule],
+  imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatDatepickerModule,
+     MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule, HeaderComponent],
   templateUrl: './sousysteme-add-edit.component.html',
   styleUrl: './sousysteme-add-edit.component.scss'
 })
@@ -40,7 +43,9 @@ export class SousystemeAddEditComponent {
 
   constructor(private _fb: FormBuilder,
               private _http: HttpClient,
-              private snap: ActivatedRoute
+              private snap: ActivatedRoute,
+              private router: Router,
+              private toastr: ToastrService
              ){
     this.sousystemeForm = this._fb.group({
       codeSys: '',
@@ -53,9 +58,7 @@ export class SousystemeAddEditComponent {
     this.id = this.snap.snapshot.params['id'];
     this._getSousystemeList();
     /*===*/
-
     this._getSousystemeByID(this.id);
-    
   }
 
 
@@ -64,12 +67,12 @@ export class SousystemeAddEditComponent {
     //console.log('Formulaire : ',this.variableForm.value);
 
     if (this.sousystemeForm.valid) {
-      if (this.data) {
-        this.updateSousysteme(this.id, this.sousystemeForm.value)
+      if (this.id) {
+        this.updateSousysteme(this.id,this.sousystemeForm.value)
           .subscribe({
             next: (val: any) => {
-             alert(" Modification effectué avec success! ");
-             
+              this.toastr.success('Modification effectué avec success!', 'SUCCESS');
+              this.router.navigate(['/sousysteme/list']);
             },
             error: (err: any) => {
               console.error(err);
@@ -78,7 +81,8 @@ export class SousystemeAddEditComponent {
       } else {
         this.addSousysteme(this.sousystemeForm.value).subscribe({
           next: (val: any) => {
-            alert(" Enregistrement effectué avec success! ");
+            this.router.navigate(['/sousysteme/list']);
+            this.toastr.success('Enregistrement effectué avec success!', 'SUCCESS');
           },
           error: (err: any) => {
             console.error(err);
@@ -130,9 +134,7 @@ export class SousystemeAddEditComponent {
     if(id){
       this.getSousystemeByID(id).subscribe({
         next: (res) => {
-          
           this.sousystemeForm.patchValue(res);
-  
           //console.log(this.indicateurForm.value);
         },
         error: console.log,

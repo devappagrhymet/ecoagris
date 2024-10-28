@@ -7,12 +7,13 @@ import { CustomerSatisfactionComponent } from './customer-satisfaction/customer-
 import { HdActivityComponent } from './hd-activity/hd-activity.component';
 import { AgentPerformanceComponent } from './agent-performance/agent-performance.component';
 import { ProdagricStatsComponent } from './prodagric-stats/prodagric-stats.component';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
     selector: 'app-help-desk',
     standalone: true,
     imports: [HdStatsComponent, TicketsStatusComponent, AverageTimeCallComponent, SupportStatusComponent, CustomerSatisfactionComponent, HdActivityComponent, AgentPerformanceComponent,
-              ProdagricStatsComponent],
+              ProdagricStatsComponent, HeaderComponent],
     templateUrl: './help-desk.component.html',
     styleUrls: ['./help-desk.component.scss']
 })

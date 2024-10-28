@@ -19,12 +19,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { HeaderComponent } from '../../common/header/header.component';
 
 @Component({
   selector: 'app-prodagric-generateur',
   standalone: true,
   imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule,
-            MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor, MatChipsModule],
+            MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor, MatChipsModule, HeaderComponent],
   templateUrl: './prodagric-generateur.component.html',
   styleUrl: './prodagric-generateur.component.scss',
   animations: [
@@ -73,6 +74,8 @@ systeme:number;
 selectedValue;
 
 indicValue;
+campagne_params;
+pays_params;
 
 
   constructor(
@@ -527,8 +530,14 @@ indicValue;
    }
    
    _uploadProdagricData(): Observable<any> {
-      return this._http.get('http://127.0.0.1:8000/api/prodagric/bilan_productionagricole');
+      let annee_debut = 2016;
+      let annee_fin = 2017;
+      let pays = 12;
+     
+      return this._http.get('http://127.0.0.1:8000/api/prodagric/getDataProductionAgricole?annee_debut='+annee_debut+'&annee_fin='+annee_fin+'&pays='+pays+'&');
     }
+
+   
 
     _addProdagricIndItem(data: any): Observable<any> {
       return this._http.post('http://127.0.0.1:8000/api/prodagric/prodagricIndItem/',data);

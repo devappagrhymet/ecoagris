@@ -14,11 +14,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-variable-list',
   standalone: true,
-  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule],
+  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, 
+    MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule, HeaderComponent],
   templateUrl: './variable-list.component.html',
   styleUrl: './variable-list.component.scss',
   animations: [
@@ -50,6 +53,7 @@ export class VariableListComponent {
       private _http: HttpClient,
       private snap: ActivatedRoute,
       private router: Router,
+      private toastr: ToastrService
   ) {}
 
   displayedColumns: string[] = [
@@ -104,7 +108,7 @@ export class VariableListComponent {
     {
         this.deleteVariable(id).subscribe({
           next: (res) => {
-            alert(" Suppression effectué avec success! ");
+            this.toastr.info('Suppression effectué avec success!', 'INFO');
             this._getVariableList();
           },
           error: console.log,

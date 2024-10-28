@@ -10,13 +10,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-variable-add-edit',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule],
+  imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, 
+    MatDatepickerModule, MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule, HeaderComponent],
   templateUrl: './variable-add-edit.component.html',
   styleUrl: './variable-add-edit.component.scss'
 })
@@ -40,10 +43,12 @@ export class VariableAddEditComponent {
 
   constructor(private _fb: FormBuilder,
               private _http: HttpClient,
-              private snap: ActivatedRoute
+              private snap: ActivatedRoute,
+              private toastr: ToastrService,
+              private router: Router,
              ){
     this.variableForm = this._fb.group({
-      codeSys: '',
+      code: '',
       libelle: '',
       libelle_ang:'',
       api_url: '',
@@ -63,15 +68,13 @@ export class VariableAddEditComponent {
 
   onFormSubmit() {
 
-    //console.log('Formulaire : ',this.variableForm.value);
-
     if (this.variableForm.valid) {
-      if (this.data) {
+      if (this.id) {
         this.updateVariable(this.id, this.variableForm.value)
           .subscribe({
             next: (val: any) => {
-             alert(" Modification effectué avec success! ");
-             
+              this.toastr.success('Modification effectué avec success!', 'SUCCESS');
+              this.router.navigate(['/variable/list']);
             },
             error: (err: any) => {
               console.error(err);
@@ -80,7 +83,8 @@ export class VariableAddEditComponent {
       } else {
         this.addVariable(this.variableForm.value).subscribe({
           next: (val: any) => {
-            alert(" Enregistrement effectué avec success! ");
+            this.toastr.success('Enregistrement effectué avec success!', 'SUCCESS');
+            this.router.navigate(['/variable/list']);
           },
           error: (err: any) => {
             console.error(err);

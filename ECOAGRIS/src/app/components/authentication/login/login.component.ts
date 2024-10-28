@@ -42,10 +42,6 @@ export class LoginComponent {
     }
 
     ngOnInit() {
-       
-    }
-
-    onFormSubmit() {
         /*++++++++++++++*/
         localStorage.removeItem('id');
         localStorage.removeItem('nomUser');
@@ -59,10 +55,11 @@ export class LoginComponent {
         localStorage.removeItem('pays_id');
         localStorage.removeItem('flag');
         /*++++++++++++++*/ /*++++++++++++++*/
-   
+    }
+
+    onFormSubmit() {
        const username = this.bookForm.get('username').value;
        const password = this.bookForm.get('password').value;
-
 
        this.getUserList().subscribe(
          data =>{

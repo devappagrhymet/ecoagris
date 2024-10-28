@@ -37,7 +37,8 @@
                             "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
                             "node_modules/remixicon/fonts/remixicon.css",
                             "public/fonts/flaticon_tagus.css",
-                            "src/styles.scss"
+                            "src/styles.scss",
+                            "node_modules/ngx-toastr/toastr.css"
                         ],
                         "scripts": [
                             "node_modules/apexcharts/dist/apexcharts.min.js"

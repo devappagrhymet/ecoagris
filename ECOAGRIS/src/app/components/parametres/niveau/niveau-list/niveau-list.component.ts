@@ -15,11 +15,13 @@ import { MatSort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-niveau-list',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatIconModule, MatButtonModule, MatMenuModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule],
+  imports: [RouterLink, MatCardModule, MatIconModule, MatButtonModule, MatMenuModule, MatTableModule, MatCheckboxModule, 
+    MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule, HeaderComponent],
   templateUrl: './niveau-list.component.html',
   styleUrl: './niveau-list.component.scss',
   animations: [

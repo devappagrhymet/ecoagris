@@ -14,11 +14,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-config-formule-list',
   standalone: true,
-  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule],
+  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, 
+    MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule, HeaderComponent],
   templateUrl: './config-formule-list.component.html',
   styleUrl: './config-formule-list.component.scss',
   animations: [

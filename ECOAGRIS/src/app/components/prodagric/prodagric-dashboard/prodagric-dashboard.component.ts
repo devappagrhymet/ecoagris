@@ -35,6 +35,7 @@ import {
   ApexLegend,
    
 } from "ng-apexcharts";
+import { HeaderComponent } from '../../common/header/header.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -75,7 +76,8 @@ export type ChartOptions_2 = {
   selector: 'app-prodagric-dashboard',
   standalone: true,
   imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule,
-            MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor, MatChipsModule, NgApexchartsModule],
+            MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor, MatChipsModule, 
+            NgApexchartsModule, HeaderComponent],
   templateUrl: './prodagric-dashboard.component.html',
   styleUrl: './prodagric-dashboard.component.scss',
   animations: [
@@ -214,7 +216,7 @@ export class ProdagricDashboardComponent {
       ],
       plotOptions: {
           bar: {
-              columnWidth: "45%",
+              columnWidth: "40%",
               distributed: true
           }
       },

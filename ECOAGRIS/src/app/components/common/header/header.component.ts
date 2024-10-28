@@ -51,7 +51,7 @@ export class HeaderComponent {
     }
 
     ngAfterViewInit() {
-        
+       
     }
 
    
@@ -70,6 +70,10 @@ export class HeaderComponent {
         this.flag = localStorage.getItem('flag');
         /*++++++++++++++*/ /*++++++++++++++*/
     }
+
+    /* reloadPage() {
+        location.reload();
+     } */
     
 
     toggleTheme() {

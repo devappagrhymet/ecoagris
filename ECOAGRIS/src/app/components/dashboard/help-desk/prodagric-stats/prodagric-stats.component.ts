@@ -155,7 +155,7 @@ export class ProdagricStatsComponent {
         ],
         plotOptions: {
             bar: {
-                columnWidth: "25%",
+                columnWidth: "40%",
                 distributed: true
             }
         },

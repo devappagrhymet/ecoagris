@@ -14,11 +14,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from '../../../common/header/header.component';
+
 
 @Component({
   selector: 'app-sousysteme-list',
   standalone: true,
-  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule],
+  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule,
+     MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule, HeaderComponent],
   templateUrl: './sousysteme-list.component.html',
   styleUrl: './sousysteme-list.component.scss',
   animations: [
@@ -51,6 +55,7 @@ export class SousystemeListComponent {
       private _http: HttpClient,
       private snap: ActivatedRoute,
       private router: Router,
+      private toastr: ToastrService
   ) {}
 
   displayedColumns: string[] = [
@@ -107,8 +112,8 @@ export class SousystemeListComponent {
     {
         this.deleteSousysteme(id).subscribe({
         next: (res) => {
-            alert(" Suppression effectué avec success! ");
-            this._getSousystemeList();
+          this.toastr.info('Suppression effectué avec success!', 'SUCCESS');
+          this._getSousystemeList();
         },
         error: console.log,
         });

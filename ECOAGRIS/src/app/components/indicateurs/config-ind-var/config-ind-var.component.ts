@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HeaderComponent } from '../../common/header/header.component';
 
 
 interface Food {
@@ -32,7 +33,7 @@ interface Food {
   standalone: true,
   imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule,
             MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor, 
-            MatAutocompleteModule, MatChipsModule],
+            MatAutocompleteModule, MatChipsModule, HeaderComponent],
   templateUrl: './config-ind-var.component.html',
   styleUrl: './config-ind-var.component.scss',
   animations: [

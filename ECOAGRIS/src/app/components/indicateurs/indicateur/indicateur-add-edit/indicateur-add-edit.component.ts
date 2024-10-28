@@ -12,14 +12,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatRadioModule } from '@angular/material/radio';
+import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-indicateur-add-edit',
   standalone: true,
   imports: [RouterLink, MatCardModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, 
-            MatDatepickerModule, MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule, MatRadioModule ],
+            MatDatepickerModule, MatSelectModule, MatNativeDateModule, ReactiveFormsModule, NgFor, HttpClientModule, 
+            MatRadioModule, HeaderComponent ],
   templateUrl: './indicateur-add-edit.component.html',
   styleUrl: './indicateur-add-edit.component.scss'
 })
@@ -48,6 +50,7 @@ export class IndicateurAddEditComponent {
               private _http: HttpClient,
               private snap: ActivatedRoute,
               private router: Router,
+              private toastr: ToastrService
              ){
     this.indicateurForm = this._fb.group({
       code: '',
@@ -74,22 +77,18 @@ export class IndicateurAddEditComponent {
     this._getNiveauList();
     this._getUniteList();
     /*===*/
-
     this._getIndicateurList(this.id);
-    
   }
 
 
-  onFormSubmit() {
+  onFormSubmit(){
 
-    //console.log('Formulaire : ',this.indicateurForm.value);
-
-    if (this.indicateurForm.valid) {
-      if (this.data) {
-        this.updateIndicateur(this.data.id, this.indicateurForm.value)
+    if (this.indicateurForm.valid){
+      if (this.id) {
+        this.updateIndicateur(this.id, this.indicateurForm.value)
           .subscribe({
             next: (val: any) => {
-             alert(" Modification effectué avec success! ");
+             this.toastr.success('Modification effectué avec success!', 'SUCCESS');
              this.router.navigate(['/indicateur/list']);
              
             },
@@ -97,11 +96,12 @@ export class IndicateurAddEditComponent {
               console.error(err);
             },
           });
-      } else {
+      }else{
+
         this.addIndicateur(this.indicateurForm.value).subscribe({
           next: (val: any) => {
             this.router.navigate(['/indicateur/list']);
-            alert(" Enregistrement effectué avec success! ");
+            this.toastr.success('Enregistrement effectué avec success!', 'SUCCESS');
           },
           error: (err: any) => {
             console.error(err);
