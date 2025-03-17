@@ -98,11 +98,11 @@ export class CampagneListComponent {
     }
   
     getCampagneList(): Observable<any> {
-      return this._http.get('http://127.0.0.1:8000/api/parametre/campagnes');
+      return this._http.get('http://154.127.90.218:8000/api/parametre/campagnes');
     }
   
     deleteCampagne(id: number): Observable<any> {
-      return this._http.delete(`http://127.0.0.1:8000/api/parametre/campagnes/${id}`);
+      return this._http.delete(`http://154.127.90.218:8000/api/parametre/campagnes/${id}`);
     }
   
   

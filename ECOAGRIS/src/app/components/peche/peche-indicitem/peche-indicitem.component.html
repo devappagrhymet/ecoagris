@@ -1,0 +1,336 @@
+<app-header />
+<!--------->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
+    <h5 class="mb-0"></h5>
+    <ol class="breadcrumb mb-0 ps-0">
+        <li class="breadcrumb-item fw-semibold">Pêche</li>
+        <li class="breadcrumb-item fw-semibold">Consultation des données</li>
+    </ol>
+</div>
+<!--========================================================-->
+<div class="row">
+         
+          
+  <div class="col-lg-3 col-md-6">
+      <mat-card class="mb-25 tagus-card">
+          <mat-card-header class="border-bottom">
+              <h5 class="mb-0">Selection campagne</h5>
+          </mat-card-header>
+          <mat-card-content>
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Campagne</mat-label>
+                <mat-select  (selectionChange)="onChangeCampagne($event)">
+                    <mat-option *ngFor="let campagne of campagnes" [value]="campagne['id']">{{campagne['annee_debut']}} - {{campagne['annee_fin']}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div class="col-lg-3 col-md-6">
+      <mat-card class="mb-25 tagus-card">
+          <mat-card-header class="border-bottom">
+              <h5 class="mb-0">Selection pays</h5>
+          </mat-card-header>
+          <mat-card-content>
+              <mat-form-field appearance="fill">
+                <mat-label>Pays</mat-label>
+                <mat-select     (selectionChange)="onChangePays($event)">
+                    <mat-option *ngFor="let country of pays" [value]="country['id']">
+                      <img src="http://154.127.90.218:8000/{{country['image']}}" width="30px" height="15px"> {{country['nomDivision']}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div class="col-lg-3 col-md-6">
+      <mat-card class="mb-25 tagus-card">
+          <mat-card-header class="border-bottom">
+              <h5 class="mb-0">Selection donnée</h5>
+          </mat-card-header>
+          <mat-card-content>
+              <mat-form-field appearance="fill" class="example-full-width" style="width: 250px;">
+                <mat-label>Donnée</mat-label>
+                <mat-select  (selectionChange)="onChangeIndicateur($event)">
+                    <mat-option>Selection</mat-option>
+                    <mat-option  [value]="82">Production de la pêche et de l' aquaculture</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div class="col-lg-3 col-md-6"></div>
+</div>
+
+<!--========================================================-->
+
+<!--<mat-card class="mb-25 tagus-card">
+  <mat-card-header>
+      <h5 class="mb-0">Indicateurs agricoles</h5>
+     
+  </mat-card-header>
+  <mat-card-content>
+      
+      <div   class="row table-container  tableFixHead table-striped">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+             
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="campagne">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
+              </ng-container>
+  
+             
+              <ng-container matColumnDef="valeur">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="unite">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="indicateur">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
+                <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="speculation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
+                <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="pays">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
+              </ng-container>
+  
+             
+  
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action(s)</th>
+                <td mat-cell *matCellDef="let row">
+            
+                  <button mat-icon-button color="warn" (click)="_deleteIndicItem(row.id)" title="Supprimer">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+               [@listItem]="animationStates[i]"
+               (mouseenter)="onListItemMouseEnter(i)"
+               (mouseleave)="onListItemMouseLeave(i)"></tr>
+  
+             
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+            </table>
+          <mat-paginator
+              [pageSizeOptions]="[7, 10, 20, 40]"
+              showFirstLastButtons
+          >
+          </mat-paginator>
+      </div>
+  </mat-card-content>
+</mat-card>-->
+
+
+<!--===========================================================-->
+<mat-card class="mb-25 tagus-card" [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+<mat-card-header class="border-bottom">
+    <!--*******************-->
+    <h5 class="mb-0">Pêche - consultation des données</h5>
+
+    <button mat-raised-button style="background-color:blue; color:white"
+            (click)="printReport()"
+            > 
+           <i  class="flaticon-download-1"></i>&nbsp; CSV
+    </button>            
+    <!--******************-->
+  </mat-card-header>
+<mat-card-content>
+     <!--===========================--> 
+     <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+     <mat-progress-bar *ngIf="isLoading$ | async" mode="query"></mat-progress-bar>
+     <!--===========================-->
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <!--=======================Data  Pays====================================-->
+        <mat-tab>
+            <div   class="row table-container  tableFixHead table-striped">                
+                <table id="export" mat-table [dataSource]="dataSourcePays" sortPays>
+      
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="divadmin">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                      <td mat-cell *matCellDef="let row">
+                          <div *ngFor="let country of pays">
+                              <span *ngIf="row.pays_id == country['id']">
+                                    {{country['nomDivision']}}
+                              </span>
+                          </div>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="libDivadmin">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                      <td mat-cell *matCellDef="let row"> 
+                        <div *ngFor="let country of pays">
+                          <span *ngIf="row.pays_id == country['id']">
+                                {{country['libelleNiveauDivision']}}
+                          </span>
+                        </div>
+
+                      </td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="campagne">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                      <td mat-cell *matCellDef="let row"> {{row.debut_campagne}} - {{row.fin_campagne}}</td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="donnee">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Donnée </th>
+                      <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                      <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="valeur">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- {{ (row.valeur_gen | number:'1.0-2').replace(',', ' ') }} -->
+                        @if (row.valeur_gen == 0) {
+                            N/A
+                        } @else {
+                            {{ (row.valeur_gen | number:'1.0-2').replace(',', ' ')  }}
+                        }
+                      </td>
+                    </ng-container>
+      
+                    <ng-container matColumnDef="unite">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                      <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+                    </ng-container>
+        
+                  
+        
+                    
+        
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                    [@listItem]="animationStates[i]"
+                    (mouseenter)="onListItemMouseEnter(i)"
+                    (mouseleave)="onListItemMouseLeave(i)"></tr>
+        
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
+                    </tr>
+                </table>
+
+                <mat-paginator #paginatorPays="matPaginator"
+                [length]="dataSourcePays?.filteredData?.length" 
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page"
+                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </mat-tab>
+        <!--=======================Fin Data  Pays====================================-->
+        <!--=======================Data  Niveau 2====================================-->
+       <!--  <mat-tab label="Niveau 2">
+              <br> 
+              <div   class="row table-container  tableFixHead table-striped">
+                  <table mat-table [dataSource]="dataSource" sort>
+        
+                      <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="campagne">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                        <td mat-cell *matCellDef="let row"> {{row.debut_campagne}} - {{row.fin_campagne}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="valeur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
+                        <td mat-cell *matCellDef="let row"> {{ (row.valeur_gen | number:'1.0-2').replace(',', ' ') }}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="unite">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="indicateur">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Donnée</th>
+                        <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                      </ng-container>
+        
+                      <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                        <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                      </ng-container>
+          
+                      <ng-container matColumnDef="divadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="libDivadmin">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                        <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.libelleNiveauDivision}}</td>
+                      </ng-container>
+          
+          
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                      [@listItem]="animationStates[i]"
+                      (mouseenter)="onListItemMouseEnter(i)"
+                      (mouseleave)="onListItemMouseLeave(i)"></tr>
+          
+                    
+                      <tr class="mat-row" *matNoDataRow>
+                     
+                      </tr>
+                  </table>
+                          
+                  <mat-paginator #matPaginator="matPaginator"
+                  [length]="dataSource?.filteredData?.length" 
+                  [pageSize]="7"
+                  [pageSizeOptions]="[7, 14, 21, 50, 100]" aria-label="Select page"
+                  showFirstLastButtons>
+                  </mat-paginator>
+
+              </div>
+        </mat-tab> -->
+        <!--=======================Fin Data  Niveau 2====================================-->
+    </mat-tab-group>
+
+</mat-card-content>
+</mat-card>
+<!--===========================================================-->
+  

@@ -1,0 +1,244 @@
+<app-header />
+<!--------->
+
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
+    <h5 class="mb-0"></h5>
+    <ol class="breadcrumb mb-0 ps-0">
+        <li class="breadcrumb-item fw-semibold">Marché</li>
+        <li class="breadcrumb-item fw-semibold">Marché du bétail</li>
+        <li class="breadcrumb-item fw-semibold">Chargement</li>
+    </ol>
+</div>
+
+<mat-card class="mb-25 tagus-card">
+    <mat-card-header>
+        <h5 class="mb-0">Marché du bétail - chargement des données</h5>
+    </mat-card-header>
+    <mat-card-content>
+        <!-------------------------------------------------------->
+        <div style="border-left:15px solid purple" class="row">
+            <div class="col-lg-9 col-md-6">
+                <mat-card class="mb-25 tagus-card">
+                    <mat-card-header class="border-bottom">
+                        <h6 class="mb-0">Selectionnez</h6>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <!--===========================
+                        <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+                        <mat-progress-bar *ngIf="isLoading$ | async" mode="query"></mat-progress-bar>
+                        ===========================-->
+                        <form [formGroup]="generateurForm">
+                            <div class="row">
+                                <!----------------------Pays-------------------------------------------->
+                                <div class="col-lg-3 col-md-12">
+                                    <mat-form-field appearance="fill" class="example-full-width">
+                                        <mat-label>Pays</mat-label>
+                                        <mat-select  formControlName="pays" [(ngModel)]="pays_params">
+                                            <mat-option>Selection</mat-option>
+                                            <mat-option *ngFor="let country of pays" [value]="country['id']">
+                                                <img src="http://154.127.90.218:8000/{{country['image']}}" width="30px" height="15px"> {{country['nomDivision']}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!----------------------Debut campagne-------------------------------------->
+                                <div class="col-lg-3 col-md-12">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Année</mat-label>
+                                        <input type="text"
+                                            placeholder="année"
+                                            aria-label="Number"
+                                            matInput
+                                            [formControl]="myControl"
+                                            [matAutocomplete]="auto"
+                                            formControlName="debut_campagne"  [(ngModel)]="debut_campagne">
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option}}
+                                        </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>
+                                 <!----------------------Fin campagne----------------------------------
+                                 <div class="col-lg-3 col-md-12">
+                                    <mat-form-field  appearance="fill">
+                                        <mat-label>Fin campagne</mat-label>
+                                        <input type="text"
+                                            placeholder="Periode fin"
+                                            aria-label="Number"
+                                            matInput
+                                            [formControl]="myControl"
+                                            [matAutocomplete]="auto"
+                                            formControlName="fin_campagne"  [(ngModel)]="fin_campagne">
+                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                            {{option}}
+                                        </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </div>-->
+                                 <!----------------------Produit animalier------------------------------------------>
+                                 <div class="col-lg-3 col-md-12">
+                                    <mat-form-field appearance="fill" class="example-full-width">
+                                        <mat-label>Donnée</mat-label>
+                                        <mat-select  formControlName="indicateur" [(ngModel)]="indicateur_params">
+                                            <mat-option>Selection</mat-option>
+                                            <mat-option  [value]="86">Prix moyens des Taureaux, Béliers, Bouc, camelin, asins, porcs, etc.</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <!--===========================--> 
+                        <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+                        <mat-progress-bar *ngIf="isLoading$ | async" mode="query"></mat-progress-bar>
+                         <!--===========================-->
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+            <!--========================================-->
+            <div class="col-lg-3 col-md-6">
+                <mat-card class="mb-50 tagus-card">
+                    <mat-card-header class="border-bottom">
+                        <!-- <h6 class="mb-0">Selection un indicateur</h6> -->
+                    </mat-card-header>
+                    <mat-card-content>
+                        <form   [formGroup]="generateurForm">
+                            
+                            <button mat-button (click)="loadComextData()"  style="background-color:purple; color:white">
+                               
+                                <!------->
+                                <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+                                <span *ngIf="isLoading$ | async">Chargement...</span>
+                                <!------->
+                                <i *ngIf="!(isLoading$ | async)" class="flaticon-diskette"></i>&nbsp;
+                                <span *ngIf="!(isLoading$ | async)">Valider</span>
+                                <!------->
+                            </button> 
+                        </form>
+                    </mat-card-content>
+                   
+
+                
+                </mat-card>
+            </div>
+            <!--========================================-->
+        </div>
+       <!-------------------------------------------------------->
+      
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="affichage"  class="row">
+    <div class="col-lg-12 col-md-12">
+        <mat-card class="mb-25 tagus-card">
+            <mat-card-header class="border-bottom">
+                <!-- <h6 class="mb-0">Affichage des données</h6> -->
+            </mat-card-header>
+            <mat-card-content>
+                   <!--------------------Affichage des données------------------------------------>
+                    <div   class="row table-container  tableFixHead table-striped">                
+                        <table id="export" mat-table [dataSource]="dataSourcePays" sortPays>
+                            <!------------>
+                            <ng-container matColumnDef="pays">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Pays</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <div *ngFor="let country of pays">
+                                        <span *ngIf="row.pays_id == country['id']">
+                                              {{country['nomDivision']}}
+                                        </span>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="divadmin">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
+                                <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="marche">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom marché</th>
+                                <td mat-cell *matCellDef="let row"> {{row.nom_marche}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="annee">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Année</th>
+                                <td mat-cell *matCellDef="let row"> {{row.annee}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="mois">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mois</th>
+                                <td mat-cell *matCellDef="let row"> {{row.mois}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="speculation">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Espece</th>
+                                <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="race">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Race</th>
+                                <td mat-cell *matCellDef="let row"> {{row.type_prix}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="prix">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Prix</th>
+                                <td mat-cell *matCellDef="let row"> {{row.valeur}}</td>
+                              </ng-container>
+                
+                              <ng-container matColumnDef="devise">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Devise</th>
+                                <td mat-cell *matCellDef="let row"> {{row.code_devise}}</td>
+                              </ng-container>
+                            <!------------>
+                            
+                            
+                            <!-- 
+                            
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                              </ng-container>
+        
+                           
+                              <ng-container matColumnDef="categorie">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
+                                <td mat-cell *matCellDef="let row"> {{row.espece}}</td>
+                              </ng-container>
+                
+                              <ng-container matColumnDef="indicateur">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
+                                <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
+                              </ng-container>
+        
+                                <ng-container matColumnDef="libDivadmin">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Libelle Div. Admin.</th>
+                                  <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.libelleNiveauDivision}}</td>
+                                </ng-container> -->
+                    
+                    
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                                [@listItem]="animationStates[i]"
+                                (mouseenter)="onListItemMouseEnter(i)"
+                                (mouseleave)="onListItemMouseLeave(i)"></tr>
+                    
+                                <!-- Row shown when there is no matching data. -->
+                                <tr class="mat-row" *matNoDataRow>
+                                  <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
+                                </tr>
+            
+                        </table>
+                        
+                        <mat-paginator #paginatorPays="matPaginator"
+                            [length]="dataSourcePays?.filteredData?.length" 
+                            [pageSize]="5"
+                            [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page"
+                            showFirstLastButtons>
+                        </mat-paginator>
+                    </div>
+                    <!-------------------------------------------------------->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

@@ -110,15 +110,15 @@ export class VariableAddEditComponent {
   
 
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
   addVariable(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/indicateur/variable/', data);
+    return this._http.post('http://154.127.90.218:8000/api/indicateur/variable/', data);
   }
 
   updateVariable(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/variable/'+id+'/',data);
+    return this._http.put('http://154.127.90.218:8000/api/indicateur/variable/'+id+'/',data);
   }
 
   /*#######################################*/
@@ -142,7 +142,7 @@ export class VariableAddEditComponent {
   }
 
   getVariableList(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/variableList/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/variableList/'+id);
   }
 
  

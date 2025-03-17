@@ -99,7 +99,8 @@
         padding: {
             top: 100px;
             left: 15px;
-            right: 15px;
+            right: 15px; 
+           
             bottom: 20px;
         };
     }
@@ -118,12 +119,12 @@
                 display: block;
                 height: auto;
                 font: {
-                    size: 14px;
+                    size: 14px !important;
                     weight: 600;
                 };
                 padding: {
                     bottom: 14px;
-                    right: 60px;
+                    right: 20px !important;
                     left: 37px;
                     top: 14px;
                 };
@@ -342,7 +343,7 @@
             display: block;
             padding: {
                 bottom: 14px;
-                right: 60px;
+                right: 20px !important;
                 left: 37px;
                 top: 14px;
             };

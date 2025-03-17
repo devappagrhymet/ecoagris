@@ -1,0 +1,94 @@
+<app-header />
+<!--------->
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+         <!------------------Tableau----------------------->
+         <mat-card class="mb-25 tagus-card">
+                <mat-card-header>
+                    <h5 class="mb-0">Pèche & Aquaculture</h5>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="reports-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="fw-semibold main-color">Campagne</th>
+                                    <th class="fw-semibold gray-color">Indicateur</th>
+                                    <th class="fw-semibold gray-color">Valeur</th>
+                                    <th class="fw-semibold gray-color">Unité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="black-color fw-semibold">2020-2021</td>
+                                    <td class="gray-color fw-semibold">
+                                        <div class="d-flex align-items-center">
+                                            Production de la pêche et de l'aquaculture
+                                        </div>
+                                    </td>
+                                    <td class="gray-color fw-semibold">43 950 </td>
+                                    <td><span class="badge fw-semibold">Tonne</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="black-color fw-semibold">2021-2022</td>
+                                    <td class="gray-color fw-semibold">
+                                        <div class="d-flex align-items-center">
+                                            Production de la pêche et de l'aquaculture
+                                        </div>
+                                    </td>
+                                    <td class="gray-color fw-semibold">54 920 </td>
+                                    <td><span class="badge fw-semibold">Tonne</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="black-color fw-semibold">2022-2023</td>
+                                    <td class="gray-color fw-semibold">
+                                        <div class="d-flex align-items-center">
+                                            Production de la pêche et de l'aquaculture
+                                        </div>
+                                    </td>
+                                    <td class="gray-color fw-semibold">34 595 </td>
+                                    <td><span class="badge fw-semibold">Tonne</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="black-color fw-semibold">2023-2024</td>
+                                    <td class="gray-color fw-semibold">
+                                        <div class="d-flex align-items-center">
+                                            Production de la pêche et de l'aquaculture
+                                        </div>
+                                    </td>
+                                    <td class="gray-color fw-semibold">34 560 </td>
+                                    <td><span class="badge fw-semibold">Tonne</span></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <!------------------Fin tableau------------------->
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <mat-card class="mb-25 tagus-card">
+            <mat-card-header class="border-bottom">
+                <h5 class="mb-0">Histogramme</h5>
+            </mat-card-header>
+            <mat-card-content>
+            <!----------Histogramme------------->
+            <div class="chart">
+                <apx-chart
+                    [series]="chartOptions.series!"
+                    [chart]="chartOptions.chart!"
+                    [dataLabels]="chartOptions.dataLabels!"
+                    [plotOptions]="chartOptions.plotOptions!"
+                    [yaxis]="chartOptions.yaxis!"
+                    [xaxis]="chartOptions.xaxis!"
+                    [legend]="chartOptions.legend!"
+                    [colors]="chartOptions.colors!"
+                    [grid]="chartOptions.grid!"
+                ></apx-chart>
+            </div>
+            <!----------Fin histogramme--------->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

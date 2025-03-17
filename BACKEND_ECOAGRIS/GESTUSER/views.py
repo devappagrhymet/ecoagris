@@ -68,6 +68,7 @@ class UserViewset(ModelViewSet):
         profil = request.data["profil"]
         divisionadministrative = request.data["divisionadministrative"]
         photo_profil = request.data["photo_profil"]
+        first_connect = request.data["first_connect"]
         
 
         User.objects.create(nomUser = nomUser,
@@ -83,7 +84,8 @@ class UserViewset(ModelViewSet):
                             connecte = bool(request.data["connecte"]),
                             profil = Profil.objects.get(id = int(request.data["profil"])),
                             divisionadministrative = DivisionAdministrative.objects.get(id = int(request.data["divisionadministrative"])),
-                            photo_profil = photo_profil
+                            photo_profil = photo_profil,
+                            first_connect = first_connect
                            
                           )
         return Response("Enregistrement effectué avec succés", status = status.HTTP_200_OK)

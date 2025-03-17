@@ -30,10 +30,11 @@ class Speculation(models.Model):
 # Class des valeurs génerées des indicateurs  
 class ProdagricIndItem(models.Model):
 
-    valeur_gen = models.FloatField()
+    valeur_gen = models.FloatField(blank=True, null=True)
     speculation = models.ForeignKey('Speculation', blank=True, null=True, related_name='prodagricind_items', on_delete=models.CASCADE)
     indicateur = models.ForeignKey('INDICATEUR.Indicateur', blank=True, null=True, related_name='prodagricind_items', on_delete=models.CASCADE)
-    campagne = models.ForeignKey('PARAMS.Campagne', blank=True, null=True, related_name='prodagricind_items', on_delete=models.CASCADE)
+    debut_campagne = models.IntegerField(blank=True, null=True)
+    fin_campagne = models.IntegerField(blank=True, null=True)
     divisionadministrative = models.ForeignKey('DIVADMIN.DivisionAdministrative', null=True, related_name='prodagricind_items', on_delete=models.CASCADE)
     pays_id =  models.IntegerField(blank=True, null=True)
     valid_pfr = models.BooleanField(blank=True,null=True)
@@ -43,42 +44,26 @@ class ProdagricIndItem(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.valeur_gen}, {self.speculation}, {self.indicateur}, {self.campagne}, {self.divisionadministrative}"
+        return f"{self.valeur_gen}, {self.speculation}, {self.indicateur}, {self.debut_campagne}, {self.fin_campagne}, {self.divisionadministrative}"
 
-# Class des valeurs  des variables   
+# Class données de la production agricole   
 class ProdagricVarItem(models.Model):
-
-    valeur = models.FloatField()
-    speculation = models.ForeignKey('Speculation', blank=True, null=True, related_name='prodagricvar_items', on_delete=models.CASCADE)
-    variable = models.ForeignKey('INDICATEUR.Variable', blank=True, null=True, related_name='prodagricvar_items', on_delete=models.CASCADE)
-    campagne = models.ForeignKey('PARAMS.Campagne', blank=True, null=True, related_name='prodagricvar_items', on_delete=models.CASCADE)
-    divisionadministrative = models.ForeignKey('DIVADMIN.DivisionAdministrative', null=True, related_name='prodagricvar_items', on_delete=models.CASCADE)
+    
+    speculation = models.ForeignKey('Speculation', blank=True, null=True, related_name='prod_var_items', on_delete=models.CASCADE)
+    categorie = models.IntegerField(blank=True, null=True)
+    superficie_prod_agricole = models.FloatField()
+    unite_1 = models.CharField(max_length=255)
+    rendement_prod_agricole = models.FloatField()
+    unite_2 = models.CharField(max_length=255)
+    quantite_prod_agricole = models.FloatField()
+    unite_3 = models.CharField(max_length=255)
+    debut_campagne = models.IntegerField(blank=True, null=True)
+    fin_campagne = models.IntegerField(blank=True, null=True)
+    divisionadministrative = models.ForeignKey('DIVADMIN.DivisionAdministrative', null=True, related_name='prod_var_items', on_delete=models.CASCADE)
     pays_id =  models.IntegerField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.valeur}, {self.speculation}, {self.variable}, {self.campagne}, {self.divisionadministrative}"
-    
-# Class des pregec - bilanalimentaire_productionagricole  
-class Productionagricole(models.Model):
-
-    superficie_production_agricole = models.FloatField()
-    rendement_production_agricole = models.FloatField()
-    quantite_production_agricole = models.FloatField()
-    source_production_agricole = models.CharField(max_length=255)
-    campagne_production_agricole = models.CharField(max_length=255)
-    annee_production_agricole = models.CharField(max_length=255)
-    pays_production_agricole = models.CharField(max_length=255)
-    methode_production_agricole = models.CharField(max_length=255)
-    statut_production_agricole = models.IntegerField()
-    produit_id = models.PositiveBigIntegerField()
-    bilan_id = models.PositiveBigIntegerField()
-    divisionadministrative_id = models.PositiveBigIntegerField()
-    created_by = models.IntegerField(blank=True, null=True)
-    modified_by = models.IntegerField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.superficie_production_agricole}, {self.rendement_production_agricole}, {self.quantite_production_agricole}, {self.produit_id}, {self.divisionadministrative_id}, {self.annee_production_agricole}"
+        return f"{self.debut_campagne}, {self.fin_campagne}, {self.speculation}, {self.superficie_prod_agricole}, {self.rendement_prod_agricole}, {self.quantite_prod_agricole}, {self.divisionadministrative}"
+ 

@@ -1,16 +1,16 @@
 <app-header />
 <!--------->
 <!-------------------------------------------------------->
-<div class="row">
+ <!--<div class="row">
     <div class="col-lg-12 col-md-12">
         <mat-card class="mb-25 tagus-card">
             <mat-card-header>
-                <h4 class="mb-0">Tableau de bord indicateurs agricoles </h4>
+                <h4 class="mb-0">Production agricole | Tableau de bord </h4>
             </mat-card-header>
             <mat-card-content>
                 <form>
                     <div class="row">
-                         <!----------------------Campagne-------------------------------------------->
+                       
                          <div class="col-lg-4 col-md-12">
                             <form>
                                 <mat-form-field appearance="fill" class="example-full-width">
@@ -21,7 +21,7 @@
                                 </mat-form-field>
                             </form>
                         </div>
-                        <!----------------------Pays-------------------------------------------->
+                        
                         <div class="col-lg-4 col-md-12">
                             <mat-form-field appearance="fill" class="example-full-width">
                                 <mat-label>Pays</mat-label>
@@ -30,13 +30,17 @@
                                       <img src="http://127.0.0.1:8000/{{country['image']}}" width="30px" height="15px"> {{country['nomDivision']}}</mat-option>
                                 </mat-select>
                             </mat-form-field>
-                        </div>
-                         <!----------------------Pays-------------------------------------------->
-                         <div class="col-lg-4 col-md-12">
+                        </div> 
+                         
+                         <div class="col-lg-6 col-md-12">
                             <mat-form-field appearance="fill" class="example-full-width">
                                 <mat-label>Indicateur</mat-label>
                                 <mat-select  (selectionChange)="onChangeIndicateur($event)">
-                                    <mat-option *ngFor="let indicateur of indicateurs" [value]="indicateur['id']">{{indicateur['code']}} - {{indicateur['libelle']}}</mat-option>
+                                    <mat-option  [value]="52">05R004 - Superficie des principales cultures</mat-option>
+                                    <mat-option  [value]="53">05R004 - Rendement des principales cultures</mat-option>
+                                    <mat-option  [value]="54">05R004 - Production des principales cultures</mat-option>
+
+                                
                                 </mat-select>
                             </mat-form-field>
 
@@ -47,13 +51,13 @@
         </mat-card>
     </div>
     
-</div>
+</div>-->
 <!-------------------------------------------------------->
 <div class="row">
     <div class="col-lg-6 col-md-6">
         <mat-card class="mb-25 tagus-card">
             <mat-card-header class="border-bottom">
-                <h5 class="mb-0">Rendement du mil</h5>
+                <h5 class="mb-0">{{indicateur_label}} des céréales (Tonne)</h5>
             </mat-card-header>
             <mat-card-content>
                 <div class="chart">
@@ -75,20 +79,20 @@
     <div class="col-lg-6 col-md-6">
         <mat-card class="mb-25 tagus-card">
             <mat-card-header class="border-bottom">
-                <h5 class="mb-0">Rendement du mil</h5>
+                <h5 class="mb-0">{{indicateur_label}} des légumineuses  (Tonne) </h5>
             </mat-card-header>
             <mat-card-content>
                 <div class="chart">
                     <apx-chart
-                        [series]="chartOptions_2.series!"
-                        [chart]="chartOptions_2.chart!"
-                        [dataLabels]="chartOptions_2.dataLabels!"
-                        [plotOptions]="chartOptions_2.plotOptions!"
-                        [yaxis]="chartOptions_2.yaxis!"
-                        [xaxis]="chartOptions_2.xaxis!"
-                        [legend]="chartOptions_2.legend!"
-                        [colors]="chartOptions_2.colors!"
-                        [grid]="chartOptions_2.grid!"
+                        [series]="chartOptions_3.series!"
+                        [chart]="chartOptions_3.chart!"
+                        [xaxis]="chartOptions_3.xaxis!"
+                        [dataLabels]="chartOptions_3.dataLabels!"
+                        [grid]="chartOptions_3.grid!"
+                        [yaxis]="chartOptions_3.yaxis!"
+                        [stroke]="chartOptions_3.stroke!"
+                        [title]="chartOptions_3.title!"
+                        [colors]="chartOptions_3.colors!"
                     ></apx-chart>
                 </div>
             </mat-card-content>
@@ -96,69 +100,50 @@
     </div>
 </div>
 <!--========================================================-->
-<mat-card class="mb-25 tagus-card">
-    <mat-card-header>
-        <h5 class="mb-0">Indicateurs agricoles</h5>
-       
-    </mat-card-header>
-    <mat-card-content>
-         <!-- #class="myTasksTable mat-elevation-z8 tagus-mat-table" -->
-        <div   class="row table-container  tableFixHead table-striped">
-            <table mat-table [dataSource]="dataSource" matSort>
-  
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-                </ng-container>
-  
-                <ng-container matColumnDef="campagne">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
-                  <td mat-cell *matCellDef="let row"> {{row.campagne.annee_debut}} - {{row.campagne.annee_fin}}</td>
-                </ng-container>
-    
-                <!-- Progress Column -->
-                <ng-container matColumnDef="valeur">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Valeur</th>
-                  <td mat-cell *matCellDef="let row"> {{row.valeur_gen}}</td>
-                </ng-container>
-  
-                <ng-container matColumnDef="unite">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
-                  <td mat-cell *matCellDef="let row"> {{row.indicateur.unite}}</td>
-                </ng-container>
-    
-                <ng-container matColumnDef="indicateur">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Indicateur</th>
-                  <td mat-cell *matCellDef="let row"> {{row.indicateur.libelle}}</td>
-                </ng-container>
-  
-                <ng-container matColumnDef="speculation">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
-                  <td mat-cell *matCellDef="let row"> {{row.speculation.nomSpeculation}}</td>
-                </ng-container>
-    
-                <ng-container matColumnDef="pays">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Div. Admin.</th>
-                  <td mat-cell *matCellDef="let row"> {{row.divisionadministrative.nomDivision}}</td>
-                </ng-container>
-    
-                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
-                 [@listItem]="animationStates[i]"
-                 (mouseenter)="onListItemMouseEnter(i)"
-                 (mouseleave)="onListItemMouseLeave(i)"></tr>
-    
-                <!-- Row shown when there is no matching data. -->
-                <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-                </tr>
-              </table>
-            <mat-paginator
-                [pageSizeOptions]="[7, 10, 20, 40]"
-                showFirstLastButtons
-            >
-            </mat-paginator>
-        </div>
-    </mat-card-content>
-</mat-card>
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <mat-card class="mb-25 tagus-card">
+            <mat-card-header class="border-bottom">
+                <h5 class="mb-0">{{indicateur_label}} des oléagineux (Tonne) </h5>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="chart">
+                    <apx-chart
+                        [series]="chartOptions_5.series!"
+                        [chart]="chartOptions_5.chart!"
+                        [xaxis]="chartOptions_5.xaxis!"
+                        [dataLabels]="chartOptions_5.dataLabels!"
+                        [grid]="chartOptions_5.grid!"
+                        [yaxis]="chartOptions_5.yaxis!"
+                        [stroke]="chartOptions_5.stroke!"
+                        [title]="chartOptions_5.title!"
+                        [colors]="chartOptions_5.colors!"
+                    ></apx-chart>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <mat-card class="mb-25 tagus-card">
+            <mat-card-header class="border-bottom">
+                <h5 class="mb-0">{{indicateur_label}} des racines & tubercules (Tonne) </h5>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="chart">
+                    <apx-chart
+                        [series]="chartOptions_7.series!"
+                        [chart]="chartOptions_7.chart!"
+                        [xaxis]="chartOptions_7.xaxis!"
+                        [dataLabels]="chartOptions_7.dataLabels!"
+                        [grid]="chartOptions_7.grid!"
+                        [yaxis]="chartOptions_7.yaxis!"
+                        [stroke]="chartOptions_7.stroke!"
+                        [title]="chartOptions_7.title!"
+                        [colors]="chartOptions_7.colors!"
+                    ></apx-chart>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<!--========================================================-->

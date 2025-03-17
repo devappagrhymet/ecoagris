@@ -1,26 +1,21 @@
 <app-header />
 <!--------->
 <div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
-    <h5 class="mb-0">Indicateur</h5>
+    <h5 class="mb-0"></h5>
     <ol class="breadcrumb mb-0 ps-0">
-        <li class="breadcrumb-item">
-            <a routerLink="/">
-                <i class="ri-home-8-line"></i>
-                Home
-            </a>
-        </li>
-        <li class="breadcrumb-item gray-color">Indicateur</li>
-        <li class="breadcrumb-item fw-semibold">{{id ? 'Modification': 'Création'}} indicateur</li>
+        <li class="breadcrumb-item fw-semibold">Indicateurs</li>
+        <li class="breadcrumb-item fw-semibold">Indicateur</li>
+        <li class="breadcrumb-item fw-semibold">{{id ? 'Modification': 'Création'}} d' un indicateur</li>
     </ol>
 </div>
 
 
 <div class="row">
     <!------------------------------Formulaire----------------------------->
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-9 col-md-9">
             <mat-card class="mb-25 create-project-card tagus-card">
                 <mat-card-header class="border-bottom">
-                    <h5 class="mb-0">{{id ? 'Modification': 'Création'}}</h5>
+                    <h5 class="mb-0">{{id ? 'Modification': 'Création'}} d' un indicateur</h5>
                 </mat-card-header>
                 <mat-card-content>
                     <form [formGroup]="indicateurForm"  (ngSubmit)="onFormSubmit()" novalidate>
@@ -36,35 +31,35 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6"></div>
                             <div class="col-lg-6 col-md-12 col-sm-6">
-                                <label class="d-block mb-12 fw-semibold gray-color">Libélle</label>
+                                <label class="d-block mb-12 fw-semibold gray-color">Libellé en français</label>
                                 <mat-form-field appearance="fill">
                                     <i class="ri-edit-2-line"></i>
-                                    <mat-label>Libelle</mat-label>
+                                    <mat-label>Libellé en français</mat-label>
                                     <input matInput   formControlName="libelle">
                                 </mat-form-field>
                             </div>
                             
                             <div class="col-lg-6 col-md-12 col-sm-6">
-                                <label class="d-block mb-12 fw-semibold gray-color">Libélle ang.</label>
+                                <label class="d-block mb-12 fw-semibold gray-color">Libellé en anglais</label>
                                 <mat-form-field appearance="fill">
                                     <i class="ri-edit-2-line"></i>
-                                    <mat-label>Libelle ang</mat-label>
+                                    <mat-label>Libellé en anglais</mat-label>
                                     <input matInput  formControlName="libelle_ang">
                                 </mat-form-field>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <label class="d-block mb-12 fw-semibold gray-color">Description</label>
+                                <label class="d-block mb-12 fw-semibold gray-color">Description  en français</label>
                                 <mat-form-field appearance="fill" >
                                     <i class="ri-information-line"></i>
-                                    <mat-label>description...</mat-label>
+                                    <mat-label>Description  en français</mat-label>
                                     <textarea matInput rows="4"  formControlName="description"></textarea>
                                 </mat-form-field>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <label class="d-block mb-12 fw-semibold gray-color">Description ang.</label>
+                                <label class="d-block mb-12 fw-semibold gray-color">Description en anglais</label>
                                 <mat-form-field appearance="fill" >
                                     <i class="ri-information-line"></i>
-                                    <mat-label>description ang...</mat-label>
+                                    <mat-label>Description en anglais</mat-label>
                                     <textarea matInput rows="4"  formControlName="description_ang"></textarea>
                                 </mat-form-field>
                             </div>
@@ -113,7 +108,7 @@
                                 </mat-form-field>
                              </div>
                             <!--==================================-->
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                           <!--  <div class="col-lg-6 col-md-6 col-sm-6">
                                 <label class="d-block mb-12 fw-semibold gray-color">Indicateur</label>
                                 <mat-form-field appearance="fill">
                                     <mat-label>Indicateur CRA</mat-label>
@@ -123,7 +118,7 @@
                                         <mat-option value="NON">NON</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </div>
+                            </div> -->
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <label class="d-block mb-12 fw-semibold gray-color">Composite</label>
                                 <mat-form-field appearance="fill" >
@@ -143,7 +138,7 @@
                                     <input matInput  formControlName="responsable_collecte">
                                 </mat-form-field>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                           <!--  <div class="col-lg-6 col-md-6 col-sm-6">
                                 <label class="d-block mb-12 fw-semibold gray-color">Statut</label>
                                 <mat-form-field appearance="fill" >
                                     <mat-label>Statut</mat-label>
@@ -154,16 +149,16 @@
                                         <mat-option value="EN_VEILLE">EN VEILLE</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </div>
+                            </div> -->
                             <div class="col-lg-6 col-md-6 col-sm-6">
     
-                                <label class="d-block mb-12 fw-semibold gray-color">Données indicateur</label>
+                                <label class="d-block mb-12 fw-semibold gray-color">Type de traitement</label>
                                 <mat-form-field appearance="fill" >
-                                    <mat-label>Données indicateur</mat-label>
+                                    <mat-label>Type de traitement</mat-label>
                                     <i class="ri-edit-2-line"></i>
                                    <mat-select  formControlName="calcule">
-                                        <mat-option value="True">Calculées</mat-option>
-                                        <mat-option value="False">Chargées</mat-option>
+                                        <mat-option value="True">Calculé</mat-option>
+                                        <mat-option value="False">Chargé</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>

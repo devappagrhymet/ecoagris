@@ -11,10 +11,13 @@ router.register('prodagricIndItem', ProdagricIndItemViewset, basename='prodagric
 router.register('prodagricIndItemList', ProdagricIndItemListViewset, basename='prodagricIndItemList')
 router.register('prodagricVarItem', ProdagricVarItemViewset, basename='prodagricVarItem')
 router.register('prodagricVarItemList', ProdagricVarItemListViewset, basename='prodagricVarItemList')
-router.register('bilan_productionagricole', ProductionagricoleViewset, basename='bilan_productionagricole')
+
 
 router.register('get_prodagric', GetProdagricViewset, basename='get_prodagric')
 
-router.register('alpha', AlphaViewset, basename='alpha')
+router.register('get_prodagric_data', GetProductionByPaysViewset, basename='get_prodagric_data')
+router.register('get_prodagric_indicateur', GetProdagricIndicateurViewset, basename='get_prodagric_indicateur')
+router.register('get_prodagric_niveau2', GetProductionByNiveau2Viewset, basename='get_prodagric_niveau2')
+router.register('get_prodagric_niveau1', GetProductionByNiveau1Viewset, basename='get_prodagric_niveau1')
 #____________________End URL_______________________________________________
 urlpatterns= router.urls

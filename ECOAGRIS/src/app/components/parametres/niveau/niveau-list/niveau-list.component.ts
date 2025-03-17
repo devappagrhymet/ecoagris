@@ -102,11 +102,11 @@ dataSource!: MatTableDataSource<any>;
   }
 
   getNiveauList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/niveaux');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/niveaux');
   }
 
   deleteNiveau(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/parametre/niveaux/${id}`);
+    return this._http.delete(`http://154.127.90.218:8000/api/parametre/niveaux/${id}`);
   }
 
 

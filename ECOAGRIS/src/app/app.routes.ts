@@ -150,7 +150,7 @@ import { VariableAddEditComponent } from './components/indicateurs/variable/vari
 import { ConfigIndVarComponent } from './components/indicateurs/config-ind-var/config-ind-var.component';
 import { ConfigFormuleListComponent } from './components/indicateurs/config-formule/config-formule-list/config-formule-list.component';
 import { ConfigFormuleAddEditComponent } from './components/indicateurs/config-formule/config-formule-add-edit/config-formule-add-edit.component';
-import { ProdagricGenerateurComponent } from './components/prodagric/prodagric-generateur/prodagric-generateur.component';
+
 import { ProdagricIndicitemComponent } from './components/prodagric/prodagric-indicitem/prodagric-indicitem.component';
 import { SecuriteComponent } from './components/gestusers/securite/securite.component';
 import { ProfilComponent } from './components/gestusers/profil/profil.component';
@@ -173,6 +173,45 @@ import { ProdagricComponent } from './components/prodagric/prodagric.component';
 import { ProdagricDashboardComponent } from './components/prodagric/prodagric-dashboard/prodagric-dashboard.component';
 import { IndicateurComponent } from './components/indicateurs/indicateur.component';
 import { ParametreComponent } from './components/parametres/parametre.component';
+import { MarcheComponent } from './components/marche/marche.component';
+import { MarcheDashboardComponent } from './components/marche/marche-dashboard/marche-dashboard.component';
+import { ComextLoadComponent } from './components/marche/comext/comext-load/comext-load.component';
+import { ComextCalculateComponent } from './components/marche/comext/comext-calculate/comext-calculate.component';
+import { ComextIndicitemComponent } from './components/marche/comext/comext-indicitem/comext-indicitem.component';
+import { ProdagricLoadComponent } from './components/prodagric/prodagric-load/prodagric-load.component';
+
+import { ElevageComponent } from './components/elevage/elevage.component';
+import { ElevageDashboardComponent } from './components/elevage/elevage-dashboard/elevage-dashboard.component';
+import { ElevageLoadComponent } from './components/elevage/elevage-load/elevage-load.component';
+import { ElevageCalculateComponent } from './components/elevage/elevage-calculate/elevage-calculate.component';
+import { ElevageIndictitemComponent } from './components/elevage/elevage-indictitem/elevage-indictitem.component';
+import { PecheComponent } from './components/peche/peche.component';
+import { PecheDashboardComponent } from './components/peche/peche-dashboard/peche-dashboard.component';
+import { PecheLoadComponent } from './components/peche/peche-load/peche-load.component';
+import { PecheCalculateComponent } from './components/peche/peche-calculate/peche-calculate.component';
+import { PecheIndicitemComponent } from './components/peche/peche-indicitem/peche-indicitem.component';
+import { MarcheAgricoleLoadComponent } from './components/marche/marche-agricole/marche-agricole-load/marche-agricole-load.component';
+import { MarcheAgricoleIndicitemComponent } from './components/marche/marche-agricole/marche-agricole-indicitem/marche-agricole-indicitem.component';
+import { MarcheBetailLoadComponent } from './components/marche/marche-betail/marche-betail-load/marche-betail-load.component';
+import { MarcheBetailIndicitemComponent } from './components/marche/marche-betail/marche-betail-indicitem/marche-betail-indicitem.component';
+import { ComextIndicateurComponent } from './components/marche/comext/comext-indicateur/comext-indicateur.component';
+import { ProdindusDashboardComponent } from './components/prodindustrielle/prodindus-dashboard/prodindus-dashboard.component';
+import { ProdindusLoadComponent } from './components/prodindustrielle/prodindus-load/prodindus-load.component';
+import { ProdindusListComponent } from './components/prodindustrielle/prodindus-list/prodindus-list.component';
+import { StockDashboardComponent } from './components/stock/stock-dashboard/stock-dashboard.component';
+import { StockLoadComponent } from './components/stock/stock-load/stock-load.component';
+import { StockListComponent } from './components/stock/stock-list/stock-list.component';
+import { MacroDashboardComponent } from './components/macroeconomie/macro-dashboard/macro-dashboard.component';
+import { PopulationLoadComponent } from './components/macroeconomie/population/population-load/population-load.component';
+import { PopulationListComponent } from './components/macroeconomie/population/population-list/population-list.component';
+import { ProdagricIndicCalComponent } from './components/prodagric/prodagric-indic-cal/prodagric-indic-cal.component';
+import { ProdagricIndicListComponent } from './components/prodagric/prodagric-indic-list/prodagric-indic-list.component';
+import { ComextIndicCalComponent } from './components/marche/comext/comext-indic-cal/comext-indic-cal.component';
+import { ComextIndicListComponent } from './components/marche/comext/comext-indic-list/comext-indic-list.component';
+import { AgricoleIndicCalComponent } from './components/marche/marche-agricole/agricole-indic-cal/agricole-indic-cal.component';
+import { AgricoleIndicListComponent } from './components/marche/marche-agricole/agricole-indic-list/agricole-indic-list.component';
+import { BetailIndicCalComponent } from './components/marche/marche-betail/betail-indic-cal/betail-indic-cal.component';
+import { BtailIndicListComponent } from './components/marche/marche-betail/btail-indic-list/btail-indic-list.component';
 
 
 
@@ -214,9 +253,82 @@ export const routes: Routes = [
         path: 'prodagric',
         component: ProdagricComponent,
         children: [
-            {path: '', component: ProdagricDashboardComponent},
-            {path: 'generateur', component: ProdagricGenerateurComponent},
-            {path: 'indicitem', component: ProdagricIndicitemComponent}
+            {path: '',     component: ProdagricDashboardComponent},
+            {path: 'load', component: ProdagricLoadComponent},
+            {path: 'indicateur_calcule', component: ProdagricIndicCalComponent},
+            {path: 'indicateur_list', component: ProdagricIndicListComponent},
+            {path: 'indicitem-list', component: ProdagricIndicitemComponent}
+        ]
+    },
+    {
+        path: 'prodindus',
+        component: MarcheComponent,
+        children: [
+            {path: '', component: ProdindusDashboardComponent},
+            {path: 'prodindus-load', component: ProdindusLoadComponent},
+            {path: 'prodindus-list', component: ProdindusListComponent},
+        ]
+    },
+    {
+        path: 'stock',
+        component: MarcheComponent,
+        children: [
+            {path: '', component: StockDashboardComponent},
+            {path: 'stock-load', component: StockLoadComponent},
+            {path: 'stock-list', component: StockListComponent},
+        ]
+    },
+    {
+        path: 'macro',
+        component: MarcheComponent,
+        children: [
+            {path: '', component: MacroDashboardComponent},
+            {path: 'population-load', component: PopulationLoadComponent},
+            {path: 'population-list', component: PopulationListComponent},
+        ]
+    },
+    {
+        path: 'marche',
+        component: MarcheComponent,
+        children: [
+            {path: '', component: MarcheDashboardComponent},
+            {path: 'comext/load', component: ComextLoadComponent},
+            {path: 'comext/indicitem-list', component: ComextIndicitemComponent},
+            {path: 'comext/calculate', component: ComextCalculateComponent},
+            // {path: 'comext/indicateur-list', component: ComextIndicateurComponent},
+            {path: 'comext/indicateur-calcule', component: ComextIndicCalComponent},
+            {path: 'comext/indicateur-list',    component: ComextIndicListComponent},
+            {path: 'mache-agricole/load', component: MarcheAgricoleLoadComponent},
+            {path: 'mache-agricole/indicitem-list', component: MarcheAgricoleIndicitemComponent},
+
+            {path: 'mache-agricole/indicateur-calcule', component: AgricoleIndicCalComponent},
+            {path: 'mache-agricole/indicateur-list', component: AgricoleIndicListComponent},
+
+            {path: 'mache-betail/load', component: MarcheBetailLoadComponent},
+            {path: 'mache-betail/indicitem-list', component: MarcheBetailIndicitemComponent},
+
+            {path: 'mache-betail/indicateur-calcule', component: BetailIndicCalComponent},
+            {path: 'mache-betail/indicateur-list', component: BtailIndicListComponent},
+        ]
+    },
+    {
+        path: 'elevage',
+        component: ElevageComponent,
+        children: [
+            {path: '', component: ElevageDashboardComponent},
+            {path: 'load', component: ElevageLoadComponent},
+            {path: 'calculate', component: ElevageCalculateComponent},
+            {path: 'indicitem-list', component: ElevageIndictitemComponent}
+        ]
+    },
+    {
+        path: 'peche',
+        component: PecheComponent,
+        children: [
+            {path: '', component: PecheDashboardComponent},
+            {path: 'load', component: PecheLoadComponent},
+            {path: 'calculate', component: PecheCalculateComponent},
+            {path: 'indicitem-list', component: PecheIndicitemComponent}
         ]
     },
     {

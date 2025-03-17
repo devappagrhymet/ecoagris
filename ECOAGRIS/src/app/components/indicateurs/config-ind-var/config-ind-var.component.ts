@@ -149,7 +149,7 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
    }
 
    addIndicVar(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/indicateur/indicateurVariable/', data);
+    return this._http.post('http://154.127.90.218:8000/api/indicateur/indicateurVariable/', data);
   }
 
  
@@ -168,7 +168,7 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
   }
 
   getIndicVar(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/get_indicateur_variable/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/get_indicateur_variable/'+id);
   }
 
  
@@ -193,7 +193,7 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
   }
 
   deleteIndicVar(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/indicateur/indicateurVariable/${id}`);
+    return this._http.delete(`http://154.127.90.218:8000/api/indicateur/indicateurVariable/${id}`);
   }
   /***************************************************/
 
@@ -224,8 +224,8 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
   }
 
   getVariableList(): Observable<any> {
-      //return this._http.get('http://127.0.0.1:8000/api/indicateur/get_variable_sousysteme/'+id);
-      return this._http.get('http://127.0.0.1:8000/api/indicateur/variable/');
+      //return this._http.get('http://154.127.90.218:8000/api/indicateur/get_variable_sousysteme/'+id);
+      return this._http.get('http://154.127.90.218:8000/api/indicateur/variable/');
   }
 
   _getIndicateurBySousysteme(id)
@@ -243,7 +243,7 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
 
 
   getIndicateurList(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/get_indicateur_sousysteme/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/get_indicateur_sousysteme/'+id);
   }
 
 
@@ -262,7 +262,7 @@ options: string[] = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eig
 
   
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
 

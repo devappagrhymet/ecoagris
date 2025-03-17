@@ -18,7 +18,6 @@ class Indicateur(models.Model):
     responsable_collecte = models.TextField()
     description = models.TextField()
     description_ang = models.TextField()
-    indicateur_CRA = models.CharField(choices=Comp_indic_CRA.choices,max_length=255)
     composite = models.CharField(choices=Comp_indic_CRA.choices,max_length=255)
     formule = models.TextField(blank=True, null=True)
     frequence = models.ForeignKey('PARAMS.Frequence', blank=True, null=True, related_name='indicateurs', on_delete=models.CASCADE)
@@ -40,7 +39,6 @@ class Variable(models.Model):
     libelle = models.TextField()
     libelle_ang = models.TextField()
     api_url = models.TextField()
-    sousysteme = models.ForeignKey('PARAMS.Sousysteme', blank=True, null=True, related_name='variables', on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 

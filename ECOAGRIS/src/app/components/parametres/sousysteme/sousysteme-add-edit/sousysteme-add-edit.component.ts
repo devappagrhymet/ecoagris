@@ -93,12 +93,12 @@ export class SousystemeAddEditComponent {
   }
 
   addSousysteme(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/parametre/sous_systemes/', data);
+    return this._http.post('http://154.127.90.218:8000/api/parametre/sous_systemes/', data);
   }
 
   updateSousysteme(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/parametre/sous_systemes/'+id+'/',data);
-    //return this._http.put('http://127.0.0.1:8000/api/parametre/sous_systemes/${id}/',data);
+    return this._http.put('http://154.127.90.218:8000/api/parametre/sous_systemes/'+id+'/',data);
+    //return this._http.put('http://154.127.90.218:8000/api/parametre/sous_systemes/${id}/',data);
   }
 
   _getSousystemeList()
@@ -117,15 +117,15 @@ export class SousystemeAddEditComponent {
   
 
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
   addVariable(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/indicateur/variable/', data);
+    return this._http.post('http://154.127.90.218:8000/api/indicateur/variable/', data);
   }
 
   updateVariable(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/variable/'+id+'/',data);
+    return this._http.put('http://154.127.90.218:8000/api/indicateur/variable/'+id+'/',data);
   }
 
   /*#######################################*/
@@ -143,7 +143,7 @@ export class SousystemeAddEditComponent {
   }
 
   getSousystemeByID(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes/'+id);
   }
 
  

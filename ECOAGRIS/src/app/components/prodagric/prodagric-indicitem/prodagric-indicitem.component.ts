@@ -1,6 +1,6 @@
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, DecimalPipe, NgFor, NgIf } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, DebugNode, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -11,8 +11,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,15 +22,20 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { HeaderComponent } from '../../common/header/header.component';
+import { ToastrService } from 'ngx-toastr';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
+//import * as XLSX from 'xlsx';
 
 
 @Component({
   selector: 'app-prodagric-indicitem',
   standalone: true,
-  imports: [RouterLink, MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, 
+  imports: [MatMenuModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, 
             MatCheckboxModule, MatPaginatorModule, MatTooltipModule, NgIf, HttpClientModule,
             MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, ReactiveFormsModule, NgFor,
-            MatCardModule, MatTabsModule, MatIconModule, HeaderComponent],
+            MatCardModule, MatTabsModule, MatIconModule, HeaderComponent, AsyncPipe, MatProgressSpinnerModule,MatProgressBarModule, DecimalPipe],
   templateUrl: './prodagric-indicitem.component.html',
   styleUrl: './prodagric-indicitem.component.scss',
   animations: [
@@ -69,25 +74,33 @@ export class ProdagricIndicitemComponent {
       private _http: HttpClient,
       private snap: ActivatedRoute,
       private router: Router,
-      public themeService: CustomizerSettingsService
+      public themeService: CustomizerSettingsService,
+      private toastr: ToastrService
   ) {
 
     
   }
 
- 
-
   displayedColumns: string[] = [
     'id',
-    'campagne',
-    'valeur',
-    'unite',
-    'indicateur',
-    'speculation',
     'divadmin',
-    'libDivadmin',
+    'campagne',
+    'speculation',
+    'categorie',
+    'superficie',
+    'unite_1',
+    'rendement',
+    'unite_2',
+    'production',
+    'unite_3'
+    
   ];
 
+
+  bruteData$: Observable<any[]>;
+
+  private isLoading = new BehaviorSubject<Boolean>(false);
+  isLoading$ = this.isLoading.asObservable();
 
   dataSource!: MatTableDataSource<any>;
 
@@ -95,36 +108,40 @@ export class ProdagricIndicitemComponent {
 
   dataSourcePays!: MatTableDataSource<any>;
 
+  prodagric_data;
+
   params_campagne;
+
+  params_debut;
+  params_fin;
   params_indicateur;
   params_pays;
+  
 
-  @ViewChild(MatPaginator) paginatorPays: MatPaginator;
-  @ViewChild(MatSort) sortPays!: MatSort;
+  per_page:number;
+  current_page:number;
+  total_count:number;
+  total_pages:number;
 
-  @ViewChild(MatPaginator) paginatorNiveau1: MatPaginator;
-  @ViewChild(MatSort) sortNiveau1!: MatSort;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('paginatorPays') paginatorPays: MatPaginator;
+  @ViewChild('sortPays') sortPays!: MatSort;
+
+  @ViewChild('matPaginator') matPaginator: MatPaginator;
+  @ViewChild('sort') sort!: MatSort;
 
   ngAfterViewInit() {
     //this.dataSource.paginator = this.paginator;
   }
 
+
    ngOnInit(): void {
-    this._getData_Indicator_Niveau_2(2012,12,53);
-    this._getData_Indicator_Niveau_1(2012,12,53);
-    this._getData_Indicator_Pays(2012,12,53);
       /*===================*/
       for (let index in this.dataSource) {
         this.animationStates[index] = 'default';
       }
 
-      for (let index in this.dataSourceNiveau1) {
-        this.animationStates[index] = 'default';
-      }
-
+    
       for (let index in this.dataSourcePays) {
         this.animationStates[index] = 'default';
       }
@@ -133,145 +150,124 @@ export class ProdagricIndicitemComponent {
       this._getIndicateurBySousysteme(1);
       this._getPaysList();
    }
-
-    /*==========================================*/
-    #______________________Campagne________________
-    _getCampagneList()
-    {
-      this.getCampagneList().subscribe(
-        res =>{
-          this.campagnes = res;
-        },
-        error => {
-          console.log(error);
-        }
-      )
-    }
-
-    getCampagneList(): Observable<any> {
-      return this._http.get('http://127.0.0.1:8000/api/parametre/campagnes');
-    }
-   #______________________pays________________
-   _getPaysList()
+  
+   /*==========================================*/
+   #______________________Campagne________________
+   _getCampagneList()
    {
-      this.getPaysList().subscribe(
-        res =>{
-          this.pays = res;
-          //console.log(this.pays);
-        },
-        error => {
-          console.log(error);
-        }
-      )
-   }
-
-   getPaysList(): Observable<any> {
-    return this._http.get(' http://127.0.0.1:8000/api/divadmin/pays-list/0');
-  }
-  #__________________Indicateur_______________________________
-   _getIndicateurBySousysteme(id)
-   {
-     this.getIndicateurList(id).subscribe(
+     this.getCampagneList().subscribe(
        res =>{
-         this.indicateurs = res;
-         //console.log(this.sousSystemes);
+         this.campagnes = res;
        },
        error => {
          console.log(error);
        }
      )
    }
-   getIndicateurList(id:number): Observable<any> {
-     return this._http.get('http://127.0.0.1:8000/api/indicateur/get_indicateur_sousysteme/'+id);
+
+   getCampagneList(): Observable<any> {
+     return this._http.get('http://154.127.90.218:8000/api/parametre/campagnes');
    }
+  #______________________pays________________
+  _getPaysList()
+  {
+     this.getPaysList().subscribe(
+       res =>{
+         this.pays = res;
+         //console.log(this.pays);
+       },
+       error => {
+         console.log(error);
+       }
+     )
+  }
+
+  getPaysList(): Observable<any> {
+   return this._http.get(' http://154.127.90.218:8000/api/divadmin/pays-list/0');
+ }
+ #__________________Indicateur_______________________________
+  _getIndicateurBySousysteme(id)
+  {
+    this.getIndicateurList(id).subscribe(
+      res =>{
+        this.indicateurs = res;
+        //console.log(this.sousSystemes);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  getIndicateurList(id:number): Observable<any> {
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/get_indicateur_sousysteme/'+id);
+  }
+  /*==========================================*/
+   
    /*==========================================*/
    
-   onChangeCampagne(event){
+  onChangeCampagne(event){
     this.params_campagne = event.value;
-   }
 
-   onChangePays(event){
-    this.params_pays = event.value;
+    this.params_debut = this.params_campagne;
 
-   }
-
-   onChangeIndicateur(event){
-    this.params_indicateur = event.value;
-
-    this._getData_Indicator_Pays(this.params_campagne,this.params_pays,this.params_indicateur);
-    this._getData_Indicator_Niveau_1(this.params_campagne,this.params_pays,this.params_indicateur);
-    this._getData_Indicator_Niveau_2(this.params_campagne,this.params_pays,this.params_indicateur);
-   }
- 
- 
-  /*========================Data niveau PAYS======================*/
-  _getData_Indicator_Pays(params_campagne,params_pays,params_indicateur) {
-    this.getData_Indicator_Pays(params_campagne,params_pays,params_indicateur).subscribe({
-      next: (res) => {
+    this.params_fin  =  this.params_campagne + 1;
     
+  }
+
+  onChangePays(event){
+    this.params_pays = event.value;
+    this._getData_Indicator_Pays(this.params_debut,this.params_fin,this.params_pays);
+  }
+
+   
+
+  /*========================Data niveau PAYS======================*/
+  _getData_Indicator_Pays(params_debut,params_fin,params_pays) {
+    this.isLoading.next(true);
+    this.getData_Indicator_Pays(params_debut,params_fin,params_pays).subscribe({
+      next: (res) => {
         this.dataSourcePays = new MatTableDataSource(res);
         this.dataSourcePays.sort = this.sortPays;
         this.dataSourcePays.paginator = this.paginatorPays;
+        this.isLoading.next(false);
       },
       error: console.log,
     });
   }
 
-  getData_Indicator_Pays(params_campagne,params_pays,params_indicateur): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/prodagric/get_prodagric/'+params_campagne+'-'+params_pays+'-'+params_indicateur);
-  }
-  /*========================Data niveau 1========================*/
-  _getData_Indicator_Niveau_1(params_campagne,params_pays,params_indicateur) {
-    this.getData_Indicator_Niveau_1(params_campagne,params_pays,params_indicateur).subscribe({
-      next: (res) => {
-    
-        this.dataSourceNiveau1 = new MatTableDataSource(res);
-        this.dataSourceNiveau1.sort = this.sortNiveau1;
-        this.dataSourceNiveau1.paginator = this.paginatorNiveau1;
-      },
-      error: console.log,
-    });
+  getData_Indicator_Pays(params_debut,params_fin,params_pays): Observable<any> {
+    return this._http.get('http://154.127.90.218:8000/api/prodagric/get_prodagric_data/'+params_debut+'-'+params_fin+'-'+params_pays);
   }
 
-  getData_Indicator_Niveau_1(params_campagne,params_pays,params_indicateur): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/prodagric/get_prodagric/'+params_campagne+'-'+params_pays+'-'+params_indicateur);
-  }
+
+
+
+
+  /*++++++++++++++++++++++++++*/
+  
   /*=======================Data Niveau 2=========================*/
-  _getData_Indicator_Niveau_2(params_campagne,params_pays,params_indicateur) {
-    this.getProdagricIndItemList(params_campagne,params_pays,params_indicateur).subscribe({
+  _getData_Indicator_Niveau_2(params_debut,params_fin,params_pays,params_indicateur) {
+
+    this.isLoading.next(true);
+
+    this.getProdagricIndItemList(params_debut,params_fin,params_pays,params_indicateur).subscribe({
       next: (res) => {
-    
+
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.matPaginator;
+        this.isLoading.next(false);
+
       },
       error: console.log,
     });
   }
 
-  getProdagricIndItemList(params_campagne,params_pays,params_indicateur): Observable<any> {
-    //return this._http.get('http://127.0.0.1:8000/api/prodagric/prodagricIndItem');
-    return this._http.get('http://127.0.0.1:8000/api/prodagric/get_prodagric/'+params_campagne+'-'+params_pays+'-'+params_indicateur);
+  getProdagricIndItemList(params_debut,params_fin,params_pays,params_indicateur): Observable<any> {
+  
+    return this._http.get('http://154.127.90.218:8000/api/prodagric/get_prodagric_niveau2/'+params_debut+'-'+params_fin+'-'+params_pays+'-'+params_indicateur);
   }
    /*==============================================*/
-
-  _deleteIndicItem(id){
-    var result = confirm("Voulez-vous vraiment supprimmer cette variable ?");
-    if(id && result)
-    {
-        this.deleteProdagricIndItem(id).subscribe({
-        next: (res) => {
-            alert(" Suppression effectué avec success! ");
-            this._getData_Indicator_Niveau_2(2012,12,53);
-        },
-        error: console.log,
-        });
-    }
-  }
-
-  deleteProdagricIndItem(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/prodagric/prodagricIndItem/${id}`);
-  }
 
 
   /*=====animation=======*/
@@ -286,5 +282,51 @@ export class ProdagricIndicitemComponent {
   toggleRTLEnabledTheme() {
       this.themeService.toggleRTLEnabledTheme();
   }
+
+
+  /*===================================*/
+  printReport(): void{
+    //this.toastr.info('Données production agricole pour  cette campagne existe deja dans la BD', 'INFO');
+   //window.print();
+   let dataType = 'application/vnd.ms-excel.sheet.macroEnabled.12';
+   let tableSelect = document.getElementById('export');
+   let tableHtml = tableSelect.outerHTML.replace(/ /g,'%20');
+   let downloadLink = document.createElement('a');
+   document.body.appendChild(downloadLink);
+   downloadLink.href = 'data:' + dataType + ',' + tableHtml;
+   downloadLink.download = 'Indicateurs-agricoles-report.xls';
+   downloadLink.click();
+   document.body.removeChild(downloadLink); 
+
+   /* var options = { 
+    fieldSeparator: ',',
+    quoteStrings: '"',
+    decimalseparator: '.',
+    showLabels: true, 
+    showTitle: true,
+    title: 'Production agricole - Report',
+    useBom: true,
+    headers: ["ID", "Campagne", "Valeur", "Unité","Indicateur","Spéculation","Div. Admin.","Libelle Div. Admin."]
+  };
+   
+
+  let i;
+  let export_data = [];
+
+  for(i=0;i < this.prodagric_data.length; i++)
+  {
+    export_data = this.prodagric_data[i]["id"];
+    export_data = this.prodagric_data[i]["campagne"]["annee_debut"];
+    export_data = this.prodagric_data[i]["valeur_gen"];
+    export_data = this.prodagric_data[i]["indicateur"]["indicateur"];
+    export_data = this.prodagric_data[i]["indicateur"]["libelle"];
+    export_data = this.prodagric_data[i]["speculation"]["nomSpeculation"];
+    export_data = this.prodagric_data[i]["divisionadministrative"]["nomDivision"];
+    export_data = this.prodagric_data[i]["divisionadministrative"]["libelleNiveauDivision"];
+  }
+  new ngxCsv(export_data, "Production agricole - Report", options); */
+
+   //alert("CSV EXPORT")
+ }
 
 }

@@ -166,27 +166,27 @@ export class IndicateurAddEditComponent {
 
 
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
   getFrequenceList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/frequences');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/frequences');
   }
 
   getNiveauList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/niveaux');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/niveaux');
   }
 
   getUniteList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/unites');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/unites');
   }
 
   addIndicateur(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/indicateur/indicateur/',data);
+    return this._http.post('http://154.127.90.218:8000/api/indicateur/indicateur/',data);
   }
 
   updateIndicateur(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/indicateur/'+id+'/',data);
+    return this._http.put('http://154.127.90.218:8000/api/indicateur/indicateur/'+id+'/',data);
     
   }
 
@@ -221,7 +221,7 @@ export class IndicateurAddEditComponent {
   }
 
   getIndicateurList(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/indicateurList/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/indicateurList/'+id);
   }
 
 }

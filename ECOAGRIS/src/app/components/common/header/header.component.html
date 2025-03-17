@@ -71,7 +71,7 @@
             </form>
         </div>
         <ul class="header-right-side d-flex align-items-center mt-0 mb-0">
-            <li>
+           <!--  <li>
                 <button title="Langue" mat-icon-button [matMenuTriggerFor]="languageMenu" class="btn p-0 border-none rounded-circle position-relative">
                     <img src="img/flag/france.png" alt="France">
                 </button>
@@ -89,22 +89,11 @@
                                 USA
                             </button>
                         </li>
-                       <!--  <li>
-                            <button type="button" class="d-fle align-items-center border-none">
-                                <img src="img/flag/spain.png" alt="spain">
-                                Spanish
-                            </button>
-                        </li>
-                        <li>
-                            <button type="button" class="d-fle align-items-center border-none">
-                                <img src="img/flag/germany.png" alt="germany">
-                                German
-                            </button>
-                        </li> -->
+                     
                     </ul>
                 </mat-menu>
-            </li>
-            <li>
+            </li> -->
+           <!--  <li>
                 <button title="Localisation" mat-icon-button class="btn p-0 border-none rounded-circle position-relative">
                     <img src="{{flag}}" alt="{{flag}}">
                 </button>
@@ -163,7 +152,7 @@
                         <a routerLink="/email" class="fw-medium position-relative">View All <i class="flaticon-chevron"></i></a>
                     </div>
                </mat-menu>
-            </li>
+            </li> -->
             <!-- <li>
                 <button mat-icon-button [matMenuTriggerFor]="notificationMenu" class="btn p-0 border-none rounded-circle position-relative notification-btn">
                     <i class="flaticon-bell-2"></i>
@@ -214,14 +203,14 @@
                 </mat-menu>
             </li> -->
             
-            <li class="d-none d-lg-block">
+           <!--  <li class="d-none d-lg-block">
                 <div class="date-btn main-color fw-semibold position-relative">
                     <i class="flaticon-calendar"></i> {{ currentDate | date: 'dd MMMM yyyy' }}
                 </div>
-            </li>
+            </li> -->
             <li>
                 <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="profile-btn main-color border-none bg-transparent position-relative">
-                    <img src={{photo_profil}} alt={{photo_profil}} class="rounded-circle" alt="admin">
+                    <img src={{photo_profil}} alt='' class="rounded-circle" alt="admin">
                     {{profil}}
                     <span class="fw-semibold">{{prenomUser}} {{nomUser}}</span>
                 </button>
@@ -245,6 +234,14 @@
                     </ul>
                 </mat-menu>
             </li>
+            <li>
+                
+            </li>
         </ul>
+        <div class="header-right-side d-flex">
+            <img src='/img/cilss.png' alt='cilss-logo'>
+        </div>
+       
     </div>
+   
 </header>

@@ -86,12 +86,10 @@ export class ConfigFormuleAddEditComponent {
   }
 
   updateFormuleIndicateur(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/config_formule/'+id+'/',data);
+    return this._http.put('http://154.127.90.218:8000/api/indicateur/config_formule/'+id+'/',data);
   }
 
-  onChangeIndicateur(){
-   
-  }
+  
 
 
   _getSousystemeList()
@@ -109,15 +107,21 @@ export class ConfigFormuleAddEditComponent {
 
   
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
   onChange(){
     if(this.selectedValue){
       this._getIndicateurBySousysteme(this.selectedValue);
-      this._getVariableList(this.selectedValue);
+      
     }
   }
+
+  onChangeIndicateur(event){
+    this.indicValue = event.value;
+    this._getVariableList(this.indicValue);
+  }
+
 
   _getIndicateurBySousysteme(id)
   {
@@ -134,7 +138,7 @@ export class ConfigFormuleAddEditComponent {
 
 
   getIndicateurList(id:number): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/get_indicateur_sousysteme/'+id);
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/get_indicateur_sousysteme/'+id);
   }
 
 
@@ -152,7 +156,7 @@ export class ConfigFormuleAddEditComponent {
   }
 
   getVariableList(id:number): Observable<any> {
-      return this._http.get('http://127.0.0.1:8000/api/indicateur/get_variable_sousysteme/'+id);
+      return this._http.get('http://154.127.90.218:8000/api/indicateur/get_indicateur_variable/'+id);
   }
   /****************************************************** */
   addIndicVar(event:MatCheckboxChange,variable:string) {

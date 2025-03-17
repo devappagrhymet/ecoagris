@@ -40,7 +40,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id","nomUser","prenomUser","username","password","telephoneUser","emailUser","structureUser","departementUser","fonctionUser","statutUser","connecte","profil","divisionadministrative","photo_profil","date_created","date_updated"]
+        fields = ["id","nomUser","prenomUser","username","password","telephoneUser","emailUser","structureUser","departementUser","fonctionUser","statutUser","connecte","profil","divisionadministrative","photo_profil","first_connect","date_created","date_updated"]
 
 class LogSerializer(serializers.HyperlinkedModelSerializer):
     
@@ -68,5 +68,5 @@ class UpdateUserSerializer(serializers.HyperlinkedModelSerializer):
         return obj.divisionadministrative.id
     class Meta:
         model = User
-        fields = ["id","nomUser","prenomUser","username","password","telephoneUser","emailUser","structureUser","departementUser","fonctionUser","statutUser","connecte","profil","divisionadministrative","photo_profil"]
+        fields = ["id","nomUser","prenomUser","username","password","telephoneUser","emailUser","structureUser","departementUser","fonctionUser","statutUser","connecte","profil","divisionadministrative","photo_profil","first_connect"]
 

@@ -85,7 +85,7 @@ export class ConfigFormuleListComponent {
     this.getIndicateurList().subscribe({
       next: (res) => {
     
-        this.dataSource = new MatTableDataSource(res);
+        this.dataSource = new MatTableDataSource(res['responses']);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
@@ -94,7 +94,7 @@ export class ConfigFormuleListComponent {
   }
 
   getIndicateurList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/indicateurList/');
+    return this._http.get('http://154.127.90.218:8000/api/indicateur/indicateurList/');
   }
 
   _updateIndicateur(id) {
@@ -117,7 +117,7 @@ export class ConfigFormuleListComponent {
   }
 
   deleteIndicateur(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/indicateur/indicateur/${id}`);
+    return this._http.delete(`http://154.127.90.218:8000/api/indicateur/indicateur/${id}`);
   }
 
 

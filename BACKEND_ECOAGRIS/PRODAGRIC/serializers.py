@@ -37,11 +37,6 @@ class ProdagricIndItemSerializer(serializers.HyperlinkedModelSerializer):
     def get_indicateur(self, obj):
         return obj.indicateur.id
     
-    campagne = serializers.SerializerMethodField()
-
-    def get_campagne(self, obj):
-        return obj.campagne.id
-    
     divisionadministrative = serializers.SerializerMethodField()
 
     def get_divisionadministrative(self, obj):
@@ -49,27 +44,25 @@ class ProdagricIndItemSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = ProdagricIndItem
-        fields = ["id","valeur_gen","speculation","indicateur","campagne","divisionadministrative","pays_id","valid_pfr","valid_pfp","public","date_created","date_updated"]
+        fields = ["id","valeur_gen","speculation","indicateur","debut_campagne","fin_campagne","divisionadministrative","pays_id","valid_pfr","valid_pfp","public","date_created","date_updated"]
 
 # Detail Serializer des valeurs génerées des indicateurs          
 class ProdagricIndItemListSerializer(serializers.HyperlinkedModelSerializer):
     
     speculation = SpeculationSerializer()
 
-    
 
     indicateur =  IndicateurSerializer()
     
-    campagne =   CampagneSerializer()
-    
+
     divisionadministrative = DivisionAdministrativeSerializer()
     
     class Meta:
         model = ProdagricIndItem
-        fields = ["id","valeur_gen","speculation","indicateur","campagne","divisionadministrative","pays_id","valid_pfr","valid_pfp","date_created","date_updated"]
+        fields = ["id","valeur_gen","speculation","indicateur","debut_campagne","fin_campagne","divisionadministrative","pays_id","valid_pfr","valid_pfp","date_created","date_updated"]
 
 
-# Serializer des valeurs  des variables  
+# Serializer données de la production agricole
 class ProdagricVarItemSerializer(serializers.HyperlinkedModelSerializer):
 
     speculation = serializers.SerializerMethodField()
@@ -77,16 +70,6 @@ class ProdagricVarItemSerializer(serializers.HyperlinkedModelSerializer):
     def get_speculation(self, obj):
         return obj.speculation.id
     
-    variable = serializers.SerializerMethodField()
-
-    def get_variable(self, obj):
-        return obj.variable.id
-    
-    campagne = serializers.SerializerMethodField()
-
-    def get_campagne(self, obj):
-        return obj.campagne.id
-    
     divisionadministrative = serializers.SerializerMethodField()
 
     def get_divisionadministrative(self, obj):
@@ -94,26 +77,15 @@ class ProdagricVarItemSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = ProdagricVarItem
-        fields = ["id","valeur","speculation","variable","campagne","divisionadministrative","pays_id","date_created","date_updated"]
+        fields = ["id","speculation","categorie","superficie_prod_agricole","unite_1","rendement_prod_agricole","unite_2","quantite_prod_agricole","unite_3","debut_campagne","fin_campagne","divisionadministrative","pays_id","date_created","date_updated"]
 
-# Detail Serializer des valeurs  des variables  
+# Detail Serializer données de la production agricole 
 class ProdagricVarItemListSerializer(serializers.HyperlinkedModelSerializer):
 
     speculation = SpeculationSerializer()
-    
-    variable = VariableSerializer()
-    
-    campagne =   CampagneSerializer()
     
     divisionadministrative = DivisionAdministrativeSerializer()
     
     class Meta:
         model = ProdagricVarItem
-        fields = ["id","valeur","speculation","variable","campagne","divisionadministrative","pays_id","date_created","date_updated"]
-
-# Serializer des categories des produits agricoles
-class ProductionagricoleSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Productionagricole
-        fields = ["id","superficie_production_agricole","rendement_production_agricole","quantite_production_agricole","source_production_agricole","campagne_production_agricole","annee_production_agricole","pays_production_agricole","methode_production_agricole","statut_production_agricole","produit_id","bilan_id","divisionadministrative_id","created_by","modified_by","created_at","modified_at"]
+        fields = ["id","speculation","categorie","superficie_prod_agricole","unite_1","rendement_prod_agricole","unite_2","quantite_prod_agricole","unite_3","debut_campagne","fin_campagne","divisionadministrative","pays_id","date_created","date_updated"]

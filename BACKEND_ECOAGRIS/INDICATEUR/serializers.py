@@ -28,7 +28,7 @@ class IndicateurSerializer(serializers.HyperlinkedModelSerializer):
         return obj.sousysteme.id
     class Meta:
         model = Indicateur
-        fields = ["id","code","libelle","libelle_ang","responsable_collecte","description","description_ang","indicateur_CRA","composite","formule","frequence","unite","niveau","sousysteme","statut","calcule","date_created","date_updated"]
+        fields = ["id","code","libelle","libelle_ang","responsable_collecte","description","description_ang","composite","formule","frequence","unite","niveau","sousysteme","statut","calcule","date_created","date_updated"]
 
 #Serializer configuration indicateur
 class IndicateurFormuleSerializer(serializers.HyperlinkedModelSerializer):
@@ -51,7 +51,7 @@ class IndicateurListSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Indicateur
-        fields = ["id","code","libelle","libelle_ang","responsable_collecte","description","description_ang","indicateur_CRA","composite","formule","frequence","unite","niveau","sousysteme","statut","calcule","date_created","date_updated"]
+        fields = ["id","code","libelle","libelle_ang","responsable_collecte","description","description_ang","composite","formule","frequence","unite","niveau","sousysteme","statut","calcule","date_created","date_updated"]
 
 
 """ class IndicateurListSerializer(serializers.HyperlinkedModelSerializer):
@@ -108,25 +108,18 @@ class IndicateurListSerializer(serializers.HyperlinkedModelSerializer):
 #Serializer des variables
 class VariableSerializer(serializers.HyperlinkedModelSerializer):
 
-    sousysteme = serializers.SerializerMethodField()
-
-    def get_sousysteme(self, obj):
-        return obj.sousysteme.id
-    
     class Meta:
         model = Variable
-        fields = ["id","code","libelle","libelle_ang","api_url","sousysteme","date_created","date_updated"]
+        fields = ["id","code","libelle","libelle_ang","api_url","date_created","date_updated"]
 
     
 
 #___Detail Serializer des variables___
 class VariableListSerializer(serializers.HyperlinkedModelSerializer):
 
-    sousysteme = SousystemeSerializer()
-
     class Meta:
         model = Variable
-        fields = ["id","code","libelle","libelle_ang","api_url","sousysteme","date_created","date_updated"]
+        fields = ["id","code","libelle","libelle_ang","api_url","date_created","date_updated"]
         
     def validate_code(self, value):
         if Variable.objects.filter(code=value).exists():

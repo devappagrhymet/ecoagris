@@ -1,0 +1,171 @@
+<app-header />
+<!--------->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
+    <h5 class="mb-0"></h5>
+    <ol class="breadcrumb mb-0 ps-0">
+        <li class="breadcrumb-item fw-semibold">Stock</li>
+        <li class="breadcrumb-item fw-semibold">Consultation des données</li>
+    </ol>
+</div>
+<!--========================================================-->
+<div class="row">
+  
+  <div class="col-lg-3 col-md-6">
+    <mat-card class="mb-25 tagus-card">
+        <mat-card-header class="border-bottom">
+            <h5 class="mb-0">Selection pays</h5>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="fill">
+              <mat-label>Pays</mat-label>
+              <mat-select     (selectionChange)="onChangePays($event)">
+                  <mat-option *ngFor="let country of pays" [value]="country['id']">
+                    <img src="http://154.127.90.218:8000/{{country['image']}}" width="30px" height="15px"> {{country['nomDivision']}}
+                  </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+  </div>
+          
+  <div class="col-lg-3 col-md-6">
+      <mat-card class="mb-25 tagus-card">
+          <mat-card-header class="border-bottom">
+              <h5 class="mb-0">Selection campagne</h5>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>Campagne</mat-label>
+              <mat-select  (selectionChange)="onChangeCampagne($event)">
+                  <mat-option *ngFor="let campagne of campagnes" [value]="campagne['annee_debut']">{{campagne['annee_debut']}} - {{campagne['annee_fin']}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+         </mat-card-content>
+      </mat-card>
+  </div>
+
+  <div class="col-lg-3 col-md-6"></div>
+
+  <div class="col-lg-3 col-md-6"></div>
+
+  <div class="col-lg-3 col-md-6"></div>
+</div>
+
+<!--========================================================-->
+
+<!--===========================================================-->
+<mat-card class="mb-25 tagus-card" [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+<mat-card-header class="border-bottom">
+    <!--*******************-->
+    <h5 class="mb-0">Stock - consultation des données</h5>
+
+    <button mat-raised-button style="background-color: #2e4053; color:white"
+            (click)="printReport()"
+            > 
+           <i  class="flaticon-download-1"></i>&nbsp; CSV
+    </button>            
+    <!--******************-->
+  </mat-card-header>
+<mat-card-content>
+     <!--===========================--> 
+     <i *ngIf="isLoading$ | async" class="fas fa-spinner fa-spin"></i>
+     <mat-progress-bar *ngIf="isLoading$ | async" mode="query"></mat-progress-bar>
+     <!--===========================-->
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <!--=======================Data  Pays====================================-->
+        <mat-tab label="Pays">
+            <div   class="row table-container  tableFixHead table-striped">                
+                <table id="export" mat-table [dataSource]="dataSourcePays" sortPays>
+      
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="campagne">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Campagne</th>
+                    <td mat-cell *matCellDef="let row"> {{row.debut_campagne}} - {{row.fin_campagne}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="pays">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Pays</th>
+                    <td mat-cell *matCellDef="let row"> {{row.pays.nomDivision}}</td>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="speculation">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Spéculation</th>
+                    <td mat-cell *matCellDef="let row"> {{ row.speculation.nomSpeculation }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="categoriespe">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categorie</th>
+                      <td mat-cell *matCellDef="let row"> {{ row.speculation.categoriespe }}</td>
+                    </ng-container>
+    
+                  <ng-container matColumnDef="init_paysan">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiaux Paysan</th>
+                    <td mat-cell *matCellDef="let row"> {{row.stock_initiaux_paysan}}</td>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="finaux_paysan">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Finaux Paysan</th>
+                    <td mat-cell *matCellDef="let row"> {{row.stock_finaux_paysan}}</td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="init_inst">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiaux Inst.</th>
+                    <td mat-cell *matCellDef="let row"> {{row.stock_initiaux_inst}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="finaux_inst">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Finaux Inst</th>
+                      <td mat-cell *matCellDef="let row"> {{row.stock_finaux_inst}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="init_autre">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Initiaux Autres</th>
+                      <td mat-cell *matCellDef="let row"> {{row.stock_initiaux_autre}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="finaux_autre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Finaux Autres</th>
+                        <td mat-cell *matCellDef="let row"> {{row.stock_finaux_autre}}</td>
+                      </ng-container>
+
+                  <ng-container matColumnDef="unite">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Unité</th>
+                      <td mat-cell *matCellDef="let row"> {{row.unite}}</td>
+                  </ng-container>
+
+                 
+      
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;  let i = index" class="mat-row" 
+                    [@listItem]="animationStates[i]"
+                    (mouseenter)="onListItemMouseEnter(i)"
+                    (mouseleave)="onListItemMouseLeave(i)"></tr>
+        
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <!-- <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td> -->
+                    </tr>
+                </table>
+
+                <mat-paginator #paginatorPays="matPaginator"
+                [length]="dataSourcePays?.filteredData?.length" 
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 25, 50, 100]" aria-label="Select page"
+                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </mat-tab>
+        <!--=======================Fin Data  Pays====================================-->
+       
+    </mat-tab-group>
+
+</mat-card-content>
+</mat-card>
+<!--===========================================================-->
+  

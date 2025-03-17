@@ -97,7 +97,7 @@ export class SousystemeListComponent {
   }
 
   getSousystemeList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/parametre/sous_systemes');
+    return this._http.get('http://154.127.90.218:8000/api/parametre/sous_systemes');
   }
 
 
@@ -121,7 +121,7 @@ export class SousystemeListComponent {
   }
 
   deleteSousysteme(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/parametre/sous_systemes/${id}`);
+    return this._http.delete(`http://154.127.90.218:8000/api/parametre/sous_systemes/${id}`);
   }
 
  

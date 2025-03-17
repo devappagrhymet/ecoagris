@@ -1,28 +1,22 @@
 <app-header />
 <!--------->
 <div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-space-between">
-    <h5 class="mb-0">Indicateur-Formule</h5>
+    <h5 class="mb-0"></h5>
     <ol class="breadcrumb mb-0 ps-0">
-        <li class="breadcrumb-item">
-            <a routerLink="/">
-                <i class="ri-home-8-line"></i>
-                Home
-            </a>
-        </li>
-        <li class="breadcrumb-item gray-color">Indicateurs</li>
-        <li class="breadcrumb-item fw-semibold">Config-formule</li>
-        <li class="breadcrumb-item fw-semibold">Add-edit</li>
+        <li class="breadcrumb-item fw-semibold">Indicateurs</li>
+        <li class="breadcrumb-item fw-semibold">Configuration formule</li>
+        <li class="breadcrumb-item fw-semibold">Configuration d'une formule</li>
     </ol>
 </div>
 
 <mat-card class="mb-25 tagus-card">
     <mat-card-header class="border-bottom">
-        <h5 class="mb-0">Configuration</h5>
+        <h5 class="mb-0">Configuration d'une formule</h5>
     </mat-card-header>
     <mat-card-content>
         <mat-stepper orientation="vertical">
             <mat-step>
-                <ng-template matStepLabel>Etape 1 : Sous-système </ng-template>
+                <ng-template matStepLabel><b> Etape 1 : Sous-système </b></ng-template>
                 <ng-template matStepContent>
                     <p>Selectionner un sous-système</p>
                     <!--======================================================-->
@@ -40,13 +34,13 @@
                 </ng-template>
             </mat-step>
             <mat-step>
-                <ng-template matStepLabel>Etape 2 : Indicateur</ng-template>
+                <ng-template matStepLabel><b>Etape 2 : Indicateur </b></ng-template>
                 <ng-template matStepContent>
                     <p>Selectionner un indicateur</p>
                     <!--=======================================================-->
                     <mat-form-field appearance="fill" class="example-full-width">
                         <mat-label>Indicateur</mat-label>
-                        <mat-select  (selectionChange)="onChangeIndicateur()" [(ngModel)]="indicValue">
+                        <mat-select  (selectionChange)="onChangeIndicateur($event)" [(ngModel)]="indicValue">
 
                             <mat-option *ngFor="let indicateur of indicateurs"  [value]="indicateur['id']">
                                 {{indicateur['code']}} - {{indicateur['libelle']}}
@@ -59,94 +53,14 @@
                 </ng-template>
             </mat-step>
             <mat-step>
-                <ng-template matStepLabel>Etape 3 : Formule</ng-template>
+                <ng-template matStepLabel> <b> Etape 3 : Création de la formule </b></ng-template>
                 <!-- <p>Renseigner la formule</p> -->
                 <!--=======================================================-->
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-4 col-md-12">
                         <mat-card class="mb-25 create-project-card tagus-card">
                             <mat-card-header class="border-bottom">
-                                <h5 class="mb-0">Renseigner la formule</h5>
-                            </mat-card-header>
-                            <mat-card-content>
-                                 <form [formGroup]="configForm">
-                                        <input type="hidden"  formControlName="id"   [(ngModel)]="indicValue" />
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label class="d-block mb-12 fw-semibold gray-color">Operateur</label>
-                                            <!---=========================================-->
-                                            <div class="example-button-container">
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" (click)="addition()">+</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" (click)="soustraction()">-</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" (click)="multiplication()">*</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" (click)="division()">/</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >(</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >)</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >.</button>
-                                                &nbsp;
-                                              </div>
-                                              <br>
-                                              <div class="example-button-container">
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary">1</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >2</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >3</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >4</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >5</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary" >6</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary">7</button>
-                                                &nbsp;
-                                               
-                                              </div>
-                                              <br>
-                                              <div class="example-button-container">
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary">8</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary">9</button>
-                                                &nbsp;
-                                                <button mat-raised-button class="btn btn-secondary">0</button>
-                                                &nbsp;
-                                                <button mat-raised-button (click)="clear()" class="btn btn-secondary">Suppr</button>
-                                               
-                                              </div>
-                                            <!--==========================================-->
-                                        </div>
-                                    
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <label class="d-block mb-12 fw-semibold gray-color">Formule</label>
-                                            <mat-form-field appearance="fill">
-                                                <i class="ri-information-line"></i>
-                                                <mat-label>Forumle...</mat-label>
-                                                <textarea matInput rows="2"   [(ngModel)]="display" formControlName="formule"></textarea>
-                                            </mat-form-field>
-                                        </div>
-                                  
-                                    <button mat-flat-button class="me-15 gray" matStepperPrevious>Retour</button>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <button mat-flat-button (click)="save()" class="default-btn">
-                                        Valider
-                                    </button>
-                                </form>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <mat-card class="mb-25 create-project-card tagus-card">
-                            <mat-card-header class="border-bottom">
-                                <h5 class="mb-0">Selection variable</h5>
+                                <h5 class="mb-0">Selection des variables</h5>
                             </mat-card-header>
                             <mat-card-content>
                                 <form>
@@ -163,12 +77,12 @@
                                             <tr [ngClass]="i%2 == 0 ? 'tr2' : 'tr1'" >
                                                 <td>
                                                     <div class="d-flex align-items-center name-info">
-                                                        <mat-checkbox  (change)="addIndicVar($event,variable.code)"
+                                                        <mat-checkbox  (change)="addIndicVar($event,variable.variable.code)"
                                                         [checked]="false"></mat-checkbox>
-                                                        {{variable.code}}
+                                                        {{variable.variable.code}}
                                                     </div>
                                                 </td>
-                                                <td>{{variable.libelle}}</td>
+                                                <td>{{variable.variable.libelle}}</td>
                                                 <td>
                                                 </td>
                                             
@@ -180,13 +94,14 @@
                                 </form>
                             </mat-card-content>
                         </mat-card>
-                        <mat-card class="mb-25 create-project-card tagus-card">
+
+                       <!--  <mat-card class="mb-25 create-project-card tagus-card">
                             <mat-card-header class="border-bottom">
                                 <h5 class="mb-0">Selection indicateur</h5>
                             </mat-card-header>
                             <mat-card-content>
                               <form>
-                              <!--===============================-->
+                           
                               <div style="overflow-y:scroll; height: 120px;">
                                 <table class="table table-striped">
                                     <thead>
@@ -209,12 +124,114 @@
                                     </tbody>
                                 </table>
                             </div>
-                              <!--===============================-->
+                            
                             </form>
                             </mat-card-content>
-                        </mat-card>
+                        </mat-card> -->
                     
                     </div>
+
+                    <!--=================================================-->
+                    <div class="col-lg-8 col-md-12">
+                        <mat-card class="mb-25 create-project-card tagus-card">
+                            <mat-card-header class="border-bottom">
+                                <h5 class="mb-0">Selection des opérateurs, chiffres et symboles</h5>
+                            </mat-card-header>
+                            <mat-card-content>
+                                 <form [formGroup]="configForm">
+                                        <input type="hidden"  formControlName="id"   [(ngModel)]="indicValue" />
+                                        <!---====================Opérateurs=====================-->
+                                        <div class="col-lg-8 col-md-12 col-sm-12">
+                                            <label class="d-block mb-12 fw-semibold gray-color">Operateurs</label>
+                                            <div class="example-button-container">
+                                                
+                                                <button mat-raised-button class="btn btn-secondary" (click)="addition()">+</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" (click)="soustraction()">-</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" (click)="multiplication()">*</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" (click)="division()">/</button>
+                                                &nbsp;
+                                            </div>
+                                        </div>
+                                        <!---====================Chiffres=====================-->
+                                        <div class="col-lg-8 col-md-12 col-sm-12">
+                                            <label class="d-block mb-12 fw-semibold gray-color">Chiffres</label>
+                                              <div class="example-button-container">
+                                                
+                                                <button mat-raised-button class="btn btn-secondary">1</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >2</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >3</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >4</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >5</button>
+                                                &nbsp;
+                                              </div>
+                                              <br>
+                                              <div class="example-button-container">
+
+                                                <button mat-raised-button class="btn btn-secondary" >6</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary">7</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary">8</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary">9</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary">0</button>
+                                                &nbsp;
+                                              </div>
+                                              <br>
+                                              <div class="example-button-container">
+                                               
+                                               
+                                               
+                                              </div>
+                                        </div>
+                                        <!---====================Symboles=====================-->
+                                        <div class="col-lg-8 col-md-12 col-sm-12">
+                                            <label class="d-block mb-12 fw-semibold gray-color">Symboles</label>
+                                            <div class="example-button-container">
+                                               
+                                                <button mat-raised-button class="btn btn-secondary" >(</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >)</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >[</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >]</button>
+                                                &nbsp;
+                                                <button mat-raised-button class="btn btn-secondary" >.</button>
+                                            </div>
+                                            <br>
+                                            <div class="example-button-container">
+                                                <button mat-raised-button (click)="clear()" class="btn btn-secondary">Suppr</button>
+                                            </div>
+                                        </div>
+                                        <!---=================================================-->
+                                        <div class="col-lg-8 col-md-8 col-sm-12">
+                                            <label class="d-block mb-5 fw-semibold gray-color">Espace creation de la formule</label>
+                                            <mat-form-field appearance="fill">
+                                                <i class="ri-information-line"></i>
+                                                <mat-label>Forumle...</mat-label>
+                                                <textarea matInput rows="2"   [(ngModel)]="display" formControlName="formule"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                  
+                                    <button mat-flat-button class="me-15 gray" matStepperPrevious>Retour</button>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <button mat-flat-button (click)="save()" class="default-btn">
+                                        Valider
+                                    </button>
+                                </form>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                  
                  </div>
                 <!--=======================================================-->
                

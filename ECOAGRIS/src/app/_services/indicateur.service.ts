@@ -1,32 +1,52 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class IndicateurService {
-  constructor(private _http: HttpClient) {}
+  private protocol = 'http'; // Replace with your protocol
+  private baseUrl = '172.0.0.1'; // Replace with your base URL
+  private port = '8000'; // Replace with your port number
+  private apiPrefix = 'api/'; // Replace with your API prefix
 
-  addIndicateur(data: any): Observable<any> {
-    return this._http.post('http://127.0.0.1:8000/api/indicateur/indicateur/', data);
-  }
+  constructor(private http: HttpClient) {}
 
-  updateIndicateur(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/indicateur/'+id+'/',data);
-    //return this._http.put('http://127.0.0.1:8000/api/parametre/sous_systemes/${id}/',data);
-  }
+  public indicateurList(request: any){
+    const apiUrl = `${this.protocol}://${this.baseUrl}:${this.port}/${this.apiPrefix}indicateur/indicateurList`;
+    const urlWithParams = new URL(apiUrl);
 
-  getIndicateurList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/indicateur/indicateurList/');
-  }
+    const params = {
+      offset: request?.filter?.pageNumber,
+      size: request?.filter?.rowsPerPage,
+      sortBy: request?.filter?.sortingField,
+      asc: request?.filter?.asc,
+    };
 
-  deleteIndicateur(id: number): Observable<any> {
-    return this._http.delete(`http://127.0.0.1:8000/api/indicateur/indicateur/${id}`);
-  }
- 
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined) {
+        urlWithParams.searchParams.append(key, String(value));
+      }
+    });
 
-  updateFormuleIndicateur(id: number, data: any): Observable<any> {
-    return this._http.put('http://127.0.0.1:8000/api/indicateur/config_formule/'+id+'/',data);
+    if (request?.filter?.search) {
+      const searchValue = request.filter.search;
+      urlWithParams.search += (urlWithParams.search ? '&' : '') + `search=${searchValue}`;
+    }
+
+    return this.http
+      .get<any>(urlWithParams.toString())
+      .pipe(
+        map((response) => response),
+        catchError((error) => {
+          if (error.status === 404) {
+            return of({ data: [] });
+          } else {
+            throw error;
+          }
+        })
+      );
   }
 }

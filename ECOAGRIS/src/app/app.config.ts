@@ -8,6 +8,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { provideToastr } from 'ngx-toastr';
 
+import { IndicateurService } from './_services/indicateur.service'
+
 
 export const appConfig: ApplicationConfig = {
     providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
@@ -25,5 +27,7 @@ export const appConfig: ApplicationConfig = {
                         progressAnimation: 'increasing'
                     }
                 ),
+                IndicateurService,
+                
             ]
 };

@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_+juwlz#u36bf7j4@^v!&j)qe%-s@p4u2)ln74o(o8*^wdrq1e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,7 +47,13 @@ INSTALLED_APPS = [
     'PARAMS',
     'GESTUSER',
     'INDICATEUR',
-    'PRODAGRIC'
+    'PRODAGRIC',
+    'MARCHE',
+    'ELEVAGE',
+    'PECHE',
+    'PRODINDUST',
+    'POPULATION',
+    'STOCK'
 ]
 
 MIDDLEWARE = [
@@ -90,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecoagrisgen_bd',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'admin2024',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         "OPTION": {
@@ -151,16 +157,22 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:4200",
-     "http://localhost:4201",
+    "http://172.16.15.207",
+    "http://172.16.15.207:8000",
+    "http://154.127.90.218",
+    "http://154.127.90.218:8000"
 ]
 
-CORS_ALLOWED_ORIGINS = [
+""" CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
-     "http://localhost:4201",
-]
+    "http://172.16.15.207",
+    "http://172.16.15.207:8000",
+    "http://172.16.15.207:8020"
+] """
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
 # Media URL
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Medias')
 MEDIA_URL = '/Medias/'
@@ -168,7 +180,7 @@ MEDIA_URL = '/Medias/'
 #Config DRF with Pagination and JWT
 """ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2,
+    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',)
 } """
 

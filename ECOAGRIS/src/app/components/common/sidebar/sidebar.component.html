@@ -42,27 +42,27 @@
                             </li>
                             <li class="sidemenu-item">
                                 <a routerLink="/conf-ind-var" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Config Ind. Var.
+                                    Configuration indicateur variable
                                 </a>
                             </li>
                             <li class="sidemenu-item">
                                 <a routerLink="/config-formule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Config Formule
+                                    Configuration formule
                                 </a>
                             </li>
                         </ul>
                     </mat-expansion-panel>
                     <!--==============-->
                     <span class="sub-title gray-color">SOUS-SYSTEMES</span>
+                    <!--==============PRODAGRIC============================================================-->
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <i class="mdi mdi-corn"></i>
-                                 <i class="flaticon-snowflake"></i>
+                                <i class="flaticon-snowflake"></i>
                                 <span class="title">
-                                    <a routerLink="/prodagric" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                              
-                                    Prod. agricole
+                                    Production agricole
                                     </a>
                                 
                                 </span>
@@ -70,68 +70,355 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/prodagric/generateur" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Calcul des indicateurs
+                                <a routerLink="/prodagric/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                           
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodagric/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des données
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/prodagric/indicitem" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Indicateurs agricoles
+                                <a routerLink="/prodagric/indicateur_calcule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Calcule des indicateurs
+                                </a>
+                            </li>
+                           
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodagric/indicateur_list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des indicateurs
                                 </a>
                             </li>
                         </ul>
                     </mat-expansion-panel>
-                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                        <i class="flaticon-bar-chart-1"></i>
-                        <span class="title">Marché</span>
-                    </a>
-                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <!--==============FIN PRODAGRIC============================================================-->
+
+                     <!--==============PRODUCTION INDUSTRIELLE===========================================================-->
+                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-snowflake"></i>
+                                <span class="title">
+                                    <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Production industrielle
+                                    </a>
+                                
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodindus/prodindus-load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                           
+                            <li class="sidemenu-item">
+                                <a routerLink="/prodindus/prodindus-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des données
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============PRODUCTION INDUSTRIELLE============================================================-->
+                     <!--==============ELEVAGE============================================================ routerLink="/elevage" -->
+                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-twitter"></i>
+                                <span class="title">
+                                    <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Elevage
+                                    </a>
+                                
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/elevage/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                           <!--  <li class="sidemenu-item">
+                                <a routerLink="/elevage/calculate" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Calcul des indicateurs
+                                </a>
+                            </li> -->
+                            <li class="sidemenu-item">
+                                <a routerLink="/elevage/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des indicateurs
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============FIN ELEVAGE============================================================-->
+
+                    <!--==================MARCHE===============================================================-->
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-bar-chart-3"></i>
+                                <span class="title">
+                                    <a routerLink="/marche" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Marché
+                                    </a>
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-accordion>
+                            <ul class="sidebar-sub-menu">
+                               <!------------------->
+                               <li class="sidemenu-item">
+                                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                           Marche agricole
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <ul class="sidebar-sub-menu">
+                                        <li class="sidemenu-item">
+                                            <a routerLink="/marche/mache-agricole/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                Chargement des donnees
+                                            </a>
+                                        </li>
+                                      
+                                        <li class="sidemenu-item">
+                                            <a routerLink="/marche/mache-agricole/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                Consultation des données
+                                            </a>
+                                        </li>
+                                        <li class="sidemenu-item">
+                                            <a routerLink="/marche/mache-agricole/indicateur-calcule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                Calcule des indicateurs
+                                            </a>
+                                        </li>
+                                      
+                                        <li class="sidemenu-item">
+                                            <a routerLink="/marche/mache-agricole/indicateur-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                Consultation des indicateurs
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </mat-expansion-panel>
+                            </li>
+                               <!--  <li class="sidemenu-item">
+                                    <a href="javascript:void(0)" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                        Marché agricole
+                                    </a>
+                                </li> -->
+
+                                <li class="sidemenu-item">
+                                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Marché bétail
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <ul class="sidebar-sub-menu">
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/mache-betail/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Chargement des donnees
+                                                </a>
+                                            </li>
+                                            <!-- <li class="sidemenu-item">
+                                                <a routerLink="/marche/comext/calculate" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Cacul des indicateurs
+                                                </a>
+                                            </li> -->
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/mache-betail/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Consultation des données
+                                                </a>
+                                            </li>
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/mache-betail/indicateur-calcule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Calcule des indicateurs
+                                                </a>
+                                            </li>
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/mache-betail/indicateur-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Consultation des indicateurs
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </mat-expansion-panel>
+                                </li>
+                                <!---------->
+                                <li class="sidemenu-item">
+                                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                Import / Export
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <ul class="sidebar-sub-menu">
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/comext/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Chargement des donnees
+                                                </a>
+                                            </li>
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/comext/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Consultation des données
+                                                </a>
+                                            </li>
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/comext/indicateur-calcule" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Cacule des indicateurs
+                                                </a>
+                                            </li>
+                                            <li class="sidemenu-item">
+                                                <a routerLink="/marche/comext/indicateur-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                                    Consultation des indicateurs
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </mat-expansion-panel>
+                                </li>
+                            </ul>
+                        </mat-accordion>
+                    </mat-expansion-panel>
+                    <!--=================FIN MARCHE============================================================-->
+                    <!--==============PECHE & AQUA============================================================ routerLink="/peche" -->
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-qq-penguin-shape"></i>
+                                <span class="title">
+                                    <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                        Pêche et Aquaculture
+                                    </a>
+                                
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/peche/load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                           <!--  <li class="sidemenu-item">
+                                <a routerLink="/peche/calculate" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Calcul des indicateurs
+                                </a>
+                            </li> -->
+                            <li class="sidemenu-item">
+                                <a routerLink="/peche/indicitem-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des données
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============FIN PECHE & AQUA============================================================-->
+                    <!--==============Macro economie Population============================================================-->
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-snowflake"></i>
+                                <span class="title">
+                                    <a routerLink="/macro" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                        Macroéconomie
+                                    </a>
+                                
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/macro/population-load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/macro/population-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des données
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============FIN MACRO============================================================-->
+                    <!--==============Stock============================================================-->
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="flaticon-snowflake"></i>
+                                <span class="title">
+                                    <a routerLink="/stock" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                        Stock
+                                    </a>
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                            <li class="sidemenu-item">
+                                <a routerLink="/stock/stock-load" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Chargement des données
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/stock/stock-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Consultation des données
+                                </a>
+                            </li>
+                        </ul>
+                    </mat-expansion-panel>
+                    <!--==============FIN Stock============================================================-->
+                    <!--<a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-wind"></i>
-                        <span class="title">Agro-Hyd-Météo</span>
-                    </a>
-                    <a  class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <span class="title">Agro-Hydro-Météo</span>
+                    </a>-->
+                    <!--  <a  class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-twitter"></i>
                         <span disabled class="title">Elevage</span>
-                    </a>
-                    <a class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a> -->
+                   
+                    <!--   <a class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-pie-chart"></i>
                         <span disabled class="title">Peche et Aqua</span>
-                    </a>
-                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                        <i class="flaticon-truck"></i>
+                    </a> -->
+                    
+                   <!-- <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="flaticon-pie-chart-4"></i>
                         <span class="title">Intrant</span>
-                    </a>
-                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a>-->
+                    <!--<a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-pie-chart"></i>
                         <span class="title">Nutrition</span>
-                    </a>
-                    <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a>-->
+                    <!-- <a disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-sun"></i>
-                        <span class="title">Res. Nat. et CC</span>
-                    </a>
-                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <span class="title">Ressource Naturel</span>
+                    </a>-->
+                    <!--  <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-pie-chart-6"></i>
                         <span class="title">Macroéconomie</span>
-                    </a>
-                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a> -->
+
+                    
+                    <!-- <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-file-2"></i>
                         <span class="title">Recherche</span>
                     </a>
                     <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-notification"></i>
                         <span class="title">Alert précoce</span>
-                    </a>
-                    <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    </a>-->
+                    <!--  <a  disabled class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-pie-chart"></i>
                         <span class="title">Stock</span>
-                    </a>
+                    </a> -->
+                    
                     <!--==============-->
                     <span class="sub-title gray-color">PARAMETRES</span>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <i class="flaticon-setting"></i>
-                                <span class="title">Div. Admin.</span>
+                                <i class="flaticon-tools"></i>
+                                <span class="title">Division administrative</span>
                                 <!-- <span class="badge two">4</span> -->
                             </mat-panel-title>
                         </mat-expansion-panel-header>
@@ -156,7 +443,7 @@
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <i class="flaticon-setting"></i>
+                                <i class="flaticon-tools"></i>
                                 <span class="title">Indicateurs</span>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
@@ -188,30 +475,11 @@
                             </li>
                         </ul>
                     </mat-expansion-panel>
+                  
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <i class="flaticon-setting"></i>
-                                <span class="title">Prod. agricole</span>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <ul class="sidebar-sub-menu">
-                          <!--   <li class="sidemenu-item">
-                                <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Catégorie
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Spéculation
-                                </a>
-                            </li> -->
-                        </ul>
-                    </mat-expansion-panel>
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <i class="flaticon-setting"></i>
+                                <i class="flaticon-people"></i>
                                 <span class="title">Utilisateurs</span>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
@@ -235,10 +503,10 @@
                     </mat-expansion-panel>
                     <!--==============-->
                     <!--=======================================FIN MENU ECOAGRIS=====================================================-->
-                    <a routerLink="/authentication/logout" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                   <!--  <a routerLink="/authentication/logout" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="flaticon-tools"></i>
                         <span class="title">Logout</span>
-                    </a>
+                    </a> -->
                 </mat-accordion>
             </div>
         </div>

@@ -41,6 +41,7 @@ class User(models.Model):
     profil = models.ForeignKey('Profil',null=True, related_name='users', on_delete=models.CASCADE)
     divisionadministrative = models.ForeignKey('DIVADMIN.DivisionAdministrative', null=True, related_name='users', on_delete=models.CASCADE)
     photo_profil = models.FileField(upload_to=upload_path, blank=True, null=True)
+    first_connect = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 

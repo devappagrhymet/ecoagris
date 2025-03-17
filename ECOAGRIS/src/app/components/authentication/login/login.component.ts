@@ -125,7 +125,7 @@ export class LoginComponent {
      }
 
     getUserList(): Observable<any> {
-    return this._http.get('http://127.0.0.1:8000/api/gestuser/users');
+       return this._http.get('http://154.127.90.218:8000/api/gestuser/users');
     }
 
     toggleTheme() {
